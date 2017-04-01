@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class XblogController {
 
-
     @RequestMapping("/homepage")
     public String homepage() {
         return "homepage";
@@ -18,11 +17,6 @@ public class XblogController {
     @RequestMapping("/aboutme")
     public String aboutme() {
         return "aboutme";
-    }
-
-    @RequestMapping("/freemark")
-    public String freemark() {
-        return "freemark";
     }
 
 }
