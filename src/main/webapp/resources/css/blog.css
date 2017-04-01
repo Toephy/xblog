@@ -1,0 +1,19 @@
+body {
+    background: url(../image/body_bg.jpg) repeat center top;
+}
+
+.side {
+    background: #fff;
+    text-align: center;
+    padding: 10px 20px;
+}
+
+.content {
+
+}
+
+.avatar {
+    margin-bottom: 20px;
+    max-height: 140px;
+    max-width: 90%;
+}
