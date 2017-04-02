@@ -34,6 +34,10 @@
                     <a class="btn btn-primary btn-large" href="#">Learn more</a>
                 </p>
             </div>
+
+                <#--<#include "addComment.ftl">-->
+                <#include "wangEditor.ftl">
+
         </div>
     </div>
 </div>

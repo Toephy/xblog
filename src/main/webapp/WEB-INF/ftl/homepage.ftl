@@ -22,6 +22,17 @@
         <div class="col-md-9 content">
             <div class="jumbotron well">
                 <h2>
+                    大美女
+                </h2>
+                <p>
+                    ${content}
+                </p>
+                <p>
+                    <a class="btn btn-primary btn-large" href="#">Learn more</a>
+                </p>
+            </div>
+            <div class="jumbotron well">
+                <h2>
                 单目视觉里程计 mono vo
                 </h2>
                 <p>
@@ -79,8 +90,5 @@
         </div>
     </div>
 </div>
-
-<script src="resources/js/jquery.min.js"></script>
-<script src="resources/js/bootstrap.min.js"></script>
 </body>
 </html>
