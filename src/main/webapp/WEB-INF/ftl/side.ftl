@@ -1,15 +1,29 @@
 <div class="side">
-<#--<img alt="Bootstrap Image Preview" src="http://lorempixel.com/140/140/" class="img-circle"/>-->
+    <#assign active = Request.active/>
     <img alt="Bootstrap Image Preview" src="resources/image/avatar.png" class="img-circle avatar"/>
     <ul class="nav nav-pills nav-stacked">
-        <li class="active">
+        <#if active == "homepage">
+            <li class="active">
+        <#else>
+        <li>
+        </#if>
             <a href="homepage">我的博客</a>
         </li>
+
+        <#if active == "aboutme">
+        <li class="active">
+        <#else>
         <li>
+        </#if>
             <a href="aboutme">关于博主</a>
         </li>
+
+        <#if active == "messageBoard">
+        <li class="active">
+        <#else>
         <li>
-            <a href="#">留言板</a>
+        </#if>
+            <a href="messageBoard">留言板</a>
         </li>
     <#--<li class="disabled">-->
     <#--<a href="#">disabled</a>-->

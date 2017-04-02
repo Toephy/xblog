@@ -17,21 +17,18 @@
         <div class="col-md-9 content">
             <div class="jumbotron well">
                 <h2>
-                    关于我
+                    留言板
                 </h2>
                 <p>
-                    窗前明月光，<br>
-                    疑是地上霜。<br>
-                    举头望明月，<br>
-                    低头思故乡。<br>
+                    留言板，留言板，留言板，留言板
                 </p>
                 <p>
                     <a class="btn btn-primary btn-large" href="#">Learn more</a>
                 </p>
             </div>
 
-                <#--<#include "addComment.ftl">-->
-                <#include "wangEditor.ftl">
+        <#--<#include "addComment.ftl">-->
+        <#include "wangEditor.ftl">
 
         </div>
     </div>
