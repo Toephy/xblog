@@ -1,0 +1,9 @@
+CREATE TABLE `blog` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '博客id',
+  `blog_title` varchar(20) CHARACTER SET utf8 DEFAULT '' COMMENT '博客标题',
+  `blog_content` varchar(5000) CHARACTER SET utf8mb4 DEFAULT '' COMMENT '博客内容',
+  `view_count` int(11) DEFAULT '0' COMMENT '浏览次数',
+  `create_time` datetime DEFAULT NULL COMMENT '博客创建时间',
+  PRIMARY KEY (`id`),
+  KEY `index_blog_title` (`blog_title`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci
