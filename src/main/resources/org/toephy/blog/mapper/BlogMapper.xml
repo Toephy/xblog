@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.toephy.blog.dao.IBlogDao">
+
+    <resultMap id="blogMap" type="org.toephy.blog.entity.Blog">
+        <id property="id" column="id" />
+        <result property="blogTitle" column="blog_title" />
+        <result property="blogContent" column="blog_content" />
+        <result property="viewCount" column="view_count" />
+        <result property="createTime" column="create_time" />
+    </resultMap>
+
+    <select id="getAllBlogs" resultMap="blogMap" resultType="list">
+        SELECT * FROM blog;
+    </select>
+
+    <insert id="insert" parameterType="org.toephy.blog.entity.Blog">
+        INSERT INTO blog
+        (
+        blog_title,
+        blog_content,
+        view_count,
+        create_time
+        )
+        VALUES
+        (
+        #{blogTitle, jdbcType=VARCHAR},
+        #{blogContent, jdbcType=VARCHAR},
+        #{viewCount, jdbcType=INTEGER},
+        #{createTime}
+        );
+    </insert>
+
+</mapper>

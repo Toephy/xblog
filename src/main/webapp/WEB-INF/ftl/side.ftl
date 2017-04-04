@@ -2,12 +2,12 @@
     <#assign active = Request.active/>
     <img alt="Bootstrap Image Preview" src="resources/image/avatar.png" class="img-circle avatar"/>
     <ul class="nav nav-pills nav-stacked">
-        <#if active == "homepage">
+        <#if active == "blog">
             <li class="active">
         <#else>
         <li>
         </#if>
-            <a href="homepage">我的博客</a>
+            <a href="blog">我的博客</a>
         </li>
 
         <#if active == "aboutme">

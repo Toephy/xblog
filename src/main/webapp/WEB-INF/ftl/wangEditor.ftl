@@ -72,10 +72,15 @@
         // 获取格式化后的纯文本
 //        var data3 = editor.$txt.formatText();
         $.ajax({
-            url: "blog",
+            url: "addblog",
             async: false,
             method: "POST",
-            data:{blog:data1}
+            data:{
+                content:data1
+            },
+            success: function (data, textStatus, jqXHR) {
+                alert(data);
+            }
         });
     });
 </script>
