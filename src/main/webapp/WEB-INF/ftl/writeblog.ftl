@@ -15,21 +15,10 @@
         <#include "side.ftl">
         </div>
         <div class="col-md-9 content">
-            <div class="jumbotron well">
-                <h2>
-                    留言板
-                </h2>
-                <p>
-                    留言板，留言板，留言板，留言板
-                </p>
-                <p>
-                    <a class="btn btn-primary btn-large" href="#">Learn more</a>
-                </p>
-            </div>
-
-        <#include "editor_comment.ftl">
+            <#include "editor_blog.ftl">
         </div>
     </div>
 </div>
+
 </body>
 </html>

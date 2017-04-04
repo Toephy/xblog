@@ -60,6 +60,17 @@ public class XblogController {
     }
 
     /**
+     * 编辑博客页面
+     * @param request
+     * @return
+     */
+    @RequestMapping("/writeblog")
+    public String writeblog(HttpServletRequest request) {
+        request.setAttribute("active", "writeblog");
+        return "writeblog";
+    }
+
+    /**
      * 发表博客
      * @param request
      * @return
@@ -67,12 +78,13 @@ public class XblogController {
     @RequestMapping(value = "/addblog", method = RequestMethod.POST)
     @ResponseBody
     public boolean blog(HttpServletRequest request) {
+        String title = ServletRequestUtils.getStringParameter(request, "title", "");
         String content = ServletRequestUtils.getStringParameter(request, "content", "");
         System.out.println("content = " + content);
         Blog blog = new Blog();
-        blog.setBlogTitle("射雕英雄传");
+        blog.setBlogTitle(title);
         blog.setBlogContent(content);
-        blog.setViewCount(8);
+        blog.setViewCount(96542);
         blog.setCreateTime(new Date());
         boolean b = blogService.addBlog(blog);
         System.out.println("flag = " + b);

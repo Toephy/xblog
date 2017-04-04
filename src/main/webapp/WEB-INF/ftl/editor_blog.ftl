@@ -1,5 +1,9 @@
-<div style="background: #fff;padding-left: 12px"><span>发表博客</span></div>
-<div id="edit_blog" style="height:400px;max-height:500px;">
+<div style="background: #fff;padding-left: 12px"><h3>发表博客</h3></div>
+<div class="form-group">
+    <label class="sr-only" for="name">标题</label>
+    <input type="text" id="blog_title" class="form-control" placeholder="请输入标题">
+</div>
+<div id="edit_blog" style="height:800px;max-height:1200px;">
 </div>
 <br>
 <button id="submit_blog" type="button" class="btn btn-primary">提&nbsp;&nbsp;交</button>
@@ -64,8 +68,9 @@
     editor.create();
 
     $("#submit_blog").click(function () {
+        var blogTitle = $("#blog_title").val();
         // 获取编辑器区域完整html代码
-        var data1 = editor.$txt.html();
+        var blogContent = editor.$txt.html();
 
         // 获取编辑器纯文本内容
 //        var data2 = editor.$txt.text();
@@ -76,7 +81,8 @@
             async: false,
             method: "POST",
             data:{
-                content:data1
+                title:blogTitle,
+                content:blogContent
             },
             success: function (data, textStatus, jqXHR) {
                 alert(data);

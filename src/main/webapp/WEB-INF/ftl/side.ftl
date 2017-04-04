@@ -10,6 +10,14 @@
             <a href="blog">我的博客</a>
         </li>
 
+        <#if active == "writeblog">
+        <li class="active">
+        <#else>
+        <li>
+        </#if>
+            <a href="writeblog">写博客</a>
+        </li>
+
         <#if active == "aboutme">
         <li class="active">
         <#else>
