@@ -2,6 +2,7 @@ package org.toephy.blog.controller;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,6 +15,7 @@ import java.util.Map;
  * Created by Toephy on 2017.4.7 11:29
  * 第三方登录插件
  */
+@Controller
 public class ThirdPartyController {
 
     private static final String appid = "158e701c75c80a";
@@ -25,8 +27,10 @@ public class ThirdPartyController {
      * @param request
      * @return
      */
-    @RequestMapping(value = "/callback")
+    @RequestMapping(value = "/loginthirdparty")
     public String callback(HttpServletRequest request) {
+        String referer = request.getHeader("Referer");
+        System.out.println("referer = " + referer);
         String code = ServletRequestUtils.getStringParameter(request, "code", "");  // 回调返回码
         if (StringUtils.isEmpty(code)) {
             return "fail";
