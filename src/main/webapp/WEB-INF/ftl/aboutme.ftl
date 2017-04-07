@@ -29,6 +29,7 @@
                     <a class="btn btn-primary btn-large" href="#">Learn more</a>
                 </p>
             </div>
+            <#include "loginthirdparty.ftl">
         </div>
     </div>
 </div>
