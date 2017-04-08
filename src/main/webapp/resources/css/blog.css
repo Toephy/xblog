@@ -17,3 +17,48 @@ body {
     max-height: 140px;
     max-width: 90%;
 }
+
+.article_title {
+    margin-bottom: 21px;
+}
+
+.article_title h1 {
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 32px;
+    font-weight: bold;
+}
+
+.article_content {
+    margin: 35px 0;
+    font-size: 15px;
+    color: #555;
+    line-height: 35px;
+}
+
+.markdown_views {
+    font-family: 'microsoft yahei';
+    font-size: 14px;
+}
+
+.markdown_views h1,
+.markdown_views h2,
+.markdown_views h3,
+.markdown_views h4,
+.markdown_views h5,
+.markdown_views h6 {
+    font-weight: 100;
+    margin: 0.8em 0;
+}
+.markdown_views p,
+.markdown_views pre,
+.markdown_views pre.prettyprint,
+.markdown_views blockquote {
+    margin: 0 0 1.1em;
+}
+
+.markdown_views p {
+    font-family: 'microsoft yahei';
+    font-size: 16px;
+    font-weight: normal;
+}

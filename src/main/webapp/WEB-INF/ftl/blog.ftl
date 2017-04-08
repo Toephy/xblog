@@ -17,12 +17,15 @@
         <div class="col-md-9 content">
             <#list blogList as blog>
                 <div class="jumbotron well">
-                    <h2>
-                        ${blog.blogTitle}
-                    </h2>
-                    <p>
-                    ${blog.blogContent}
-                    </p>
+                    <div class="article_title">
+                        <h1>${blog.blogTitle}</h1>
+                    </div>
+                    <div class="article_content">
+                        <div class="markdown_views">
+                        <#--${blog.blogContent}-->
+                        ${blog.blogDesc}
+                        </div>
+                    </div>
                     <#--<p>-->
                         <#--<a class="btn btn-primary btn-large" href="#">Learn more</a>-->
                     <#--</p>-->

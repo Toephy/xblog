@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.toephy.blog.entity.Blog;
 import org.toephy.blog.service.IBlogService;
+import org.toephy.blog.util.BlogStringUtil;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
@@ -80,9 +81,11 @@ public class XblogController {
     public boolean blog(HttpServletRequest request) {
         String title = ServletRequestUtils.getStringParameter(request, "title", "");
         String content = ServletRequestUtils.getStringParameter(request, "content", "");
+        //content = BlogStringUtil.beautifyContent(content);
         System.out.println("content = " + content);
         Blog blog = new Blog();
         blog.setBlogTitle(title);
+        blog.setBlogDesc(BlogStringUtil.extractDesc(content));
         blog.setBlogContent(content);
         blog.setViewCount(96542);
         blog.setCreateTime(new Date());

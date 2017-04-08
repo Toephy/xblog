@@ -8,6 +8,7 @@ import java.util.Date;
 public class Blog {
     private int id;
     private String blogTitle;
+    private String blogDesc;
     private String blogContent;
     private int viewCount;
     private Date createTime;
@@ -26,6 +27,14 @@ public class Blog {
 
     public void setBlogTitle(String blogTitle) {
         this.blogTitle = blogTitle;
+    }
+
+    public String getBlogDesc() {
+        return blogDesc;
+    }
+
+    public void setBlogDesc(String blogDesc) {
+        this.blogDesc = blogDesc;
     }
 
     public String getBlogContent() {
