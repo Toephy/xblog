@@ -49,6 +49,9 @@ public class XblogController {
     public String getBlog(HttpServletRequest request, Model map, @PathVariable("id") int id) {
         request.setAttribute("active", "bloglist");
         Blog blog = blogService.getBlogById(id);
+        if (blog == null) {
+            return "redirect:/blog/all";
+        }
         map.addAttribute("blog", blog);
         return "blogdetail";
     }
@@ -93,7 +96,7 @@ public class XblogController {
      */
     @RequestMapping(value = "/addblog", method = RequestMethod.POST)
     @ResponseBody
-    public boolean blog(HttpServletRequest request) {
+    public boolean addblog(HttpServletRequest request) {
         String title = ServletRequestUtils.getStringParameter(request, "title", "");
         String content = ServletRequestUtils.getStringParameter(request, "content", "");
         //content = BlogStringUtil.beautifyContent(content);
@@ -116,7 +119,7 @@ public class XblogController {
      */
     @RequestMapping(value = "/addcomment", method = RequestMethod.POST)
     @ResponseBody
-    public boolean comment(HttpServletRequest request) {
+    public boolean addcomment(HttpServletRequest request) {
         String comment = ServletRequestUtils.getStringParameter(request, "comment", "");
         System.out.println(comment);
         return true;

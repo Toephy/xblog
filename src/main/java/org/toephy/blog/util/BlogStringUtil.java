@@ -30,7 +30,7 @@ public class BlogStringUtil {
                 .replaceAll("<h1>", "").replaceAll("</h1>", " ").replaceAll("<h2>", "").replaceAll("</h2>", " ")
                 .replaceAll("<h3>", "").replaceAll("</h3>", " ").replaceAll("<h4>", "").replaceAll("</h4>", " ").trim();
         int maxlength = 200;
-        return content.length() > maxlength ? content.substring(0, 200) : content;
+        return (content.length() > maxlength ? content.substring(0, 200) : content) + " . . .";
     }
 
     public static void main(String[] args) {
