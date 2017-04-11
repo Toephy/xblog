@@ -13,6 +13,10 @@
         <result property="createTime" column="create_time" />
     </resultMap>
 
+    <select id="getBlogbyId" parameterType="int" resultMap="blogMap">
+        SELECT * FROM blog WHERE id = #{id};
+    </select>
+
     <select id="getAllBlogs" resultMap="blogMap" resultType="list">
         SELECT * FROM blog ORDER BY id DESC;
     </select>

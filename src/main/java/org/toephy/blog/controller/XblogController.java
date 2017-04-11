@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.ServletRequestUtils;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -30,12 +31,26 @@ public class XblogController {
      * @param map
      * @return
      */
-    @RequestMapping("/blog")
+    @RequestMapping("/blog/all")
     public String blogList(HttpServletRequest request, Model map) {
-        request.setAttribute("active", "blog");
+        request.setAttribute("active", "bloglist");
         List<Blog> blogs = blogService.blogList();
         map.addAttribute("blogList", blogs);
-        return "blog";
+        return "bloglist";
+    }
+
+    /**
+     * 查看博客
+     * @param request
+     * @param map
+     * @return
+     */
+    @RequestMapping("/blog/{id}")
+    public String getBlog(HttpServletRequest request, Model map, @PathVariable("id") int id) {
+        request.setAttribute("active", "bloglist");
+        Blog blog = blogService.getBlogById(id);
+        map.addAttribute("blog", blog);
+        return "blogdetail";
     }
 
     /**

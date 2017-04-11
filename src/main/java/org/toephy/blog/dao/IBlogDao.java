@@ -11,6 +11,8 @@ import java.util.List;
 @Mapper
 public interface IBlogDao {
 
+    Blog getBlogbyId(int id);
+
     List<Blog> getAllBlogs();
 
     boolean insert(Blog blog);

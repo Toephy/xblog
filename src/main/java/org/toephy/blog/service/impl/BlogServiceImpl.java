@@ -17,6 +17,11 @@ public class BlogServiceImpl implements IBlogService {
     @Autowired
     private IBlogDao blogDao;
 
+    @Override
+    public Blog getBlogById(int id) {
+        return blogDao.getBlogbyId(id);
+    }
+
     public List<Blog> blogList() {
         return blogDao.getAllBlogs();
     }

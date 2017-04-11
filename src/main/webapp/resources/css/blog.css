@@ -36,6 +36,17 @@ body {
     line-height: 35px;
 }
 
+.article_manage {
+    padding: 5px 0;
+    color: #999;
+    font: normal 12px/24px Arial;
+    text-align: right;
+}
+
+.article_manage span {
+    margin: 0 5px;
+}
+
 .markdown_views {
     font-family: 'microsoft yahei';
     font-size: 14px;

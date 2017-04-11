@@ -9,6 +9,8 @@ import java.util.List;
  */
 public interface IBlogService {
 
+    Blog getBlogById(int id);
+
     List<Blog> blogList();
 
     boolean addBlog(Blog blog);
