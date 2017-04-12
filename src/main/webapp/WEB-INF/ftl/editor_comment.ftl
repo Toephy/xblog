@@ -1,5 +1,8 @@
-<div style="background: #fff;padding-left: 12px"><span>发表评论</span></div>
-<div id="comment" style="height:200px;max-height:300px;">
+<div style="background: #fff;">
+    <span class="ico_reply"></span>
+    <span style="font-weight: 700;color: #000;">发表评论</span>
+    <div id="comment" style="height:200px;max-height:300px;">
+    </div>
 </div>
 <br>
 <button id="submit_comment" type="button" class="btn btn-primary">发&nbsp;&nbsp;表</button>

@@ -74,3 +74,12 @@ body {
     font-size: 16px;
     font-weight: normal;
 }
+
+.ico_reply {
+    background: url(../image/reply.jpg) no-repeat 0 0;
+    vertical-align: middle;
+    display: inline-block;
+    width: 19px;
+    height: 19px;
+    margin: 0 2px;
+}
