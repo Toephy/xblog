@@ -1,11 +1,12 @@
-<div style="background: #fff;">
+
+<div style="background: #fff;margin-bottom: 20px;">
     <span class="ico_reply"></span>
     <span style="font-weight: 700;color: #000;">发表评论</span>
     <div id="comment" style="height:200px;max-height:300px;">
     </div>
+    <br>
+    <button id="submit_comment" type="button" class="btn btn-primary">发&nbsp;&nbsp;表</button>
 </div>
-<br>
-<button id="submit_comment" type="button" class="btn btn-primary">发&nbsp;&nbsp;表</button>
 
 <!--这里引用jquery和wangEditor.js-->
 <script type="text/javascript">

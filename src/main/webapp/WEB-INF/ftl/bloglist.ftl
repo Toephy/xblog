@@ -16,7 +16,7 @@
         </div>
         <div class="col-md-9">
             <#list blogList as blog>
-                <div class="jumbotron well">
+                <div class="curtain">
                     <div class="article_title">
                         <h1>
                             <a href="blog/${blog.id}" target="_blank">
@@ -41,7 +41,7 @@
 
             <ul class="pagination">
                 <li>
-                    <a href="#">Prev</a>
+                    <a href="#">上一页</a>
                 </li>
                 <li>
                     <a href="#">1</a>
@@ -59,7 +59,7 @@
                     <a href="#">5</a>
                 </li>
                 <li>
-                    <a href="#">Next</a>
+                    <a href="#">下一页</a>
                 </li>
             </ul>
         </div>
