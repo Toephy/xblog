@@ -14,7 +14,7 @@
         <div class="col-md-3">
         <#include "side.ftl">
         </div>
-        <div class="col-md-9 content">
+        <div class="col-md-9">
             <div class="jumbotron well">
                 <div class="article_title">
                     <h1>${blog.blogTitle}</h1>
