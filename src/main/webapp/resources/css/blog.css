@@ -77,8 +77,8 @@ body {
 .markdown_views h4,
 .markdown_views h5,
 .markdown_views h6 {
-    font-size: 15px;
-    font-weight: 100;
+    font-size: 17px;
+    font-weight: 500;
     margin: 0.8em 0;
 }
 .markdown_views p,
