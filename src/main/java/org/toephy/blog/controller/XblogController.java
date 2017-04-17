@@ -1,5 +1,6 @@
 package org.toephy.blog.controller;
 
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,7 +10,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.toephy.blog.entity.Blog;
+import org.toephy.blog.entity.Comment;
 import org.toephy.blog.service.IBlogService;
+import org.toephy.blog.service.ICommentService;
 import org.toephy.blog.util.BlogStringUtil;
 
 import javax.servlet.http.HttpServletRequest;
@@ -24,9 +27,12 @@ public class XblogController {
 
     @Autowired
     private IBlogService blogService;
+    @Autowired
+    private ICommentService commentService;
 
     /**
      * 博客列表
+     *
      * @param request
      * @param map
      * @return
@@ -41,6 +47,7 @@ public class XblogController {
 
     /**
      * 查看博客
+     *
      * @param request
      * @param map
      * @return
@@ -52,12 +59,15 @@ public class XblogController {
         if (blog == null) {
             return "redirect:/blog/all";
         }
+        List<Comment> commentList = commentService.getCommentList(id);
         map.addAttribute("blog", blog);
+        map.addAttribute("commentList", commentList);
         return "blogdetail";
     }
 
     /**
      * 关于博主
+     *
      * @param request
      * @return
      */
@@ -69,6 +79,7 @@ public class XblogController {
 
     /**
      * 留言板
+     *
      * @param request
      * @return
      */
@@ -80,6 +91,7 @@ public class XblogController {
 
     /**
      * 编辑博客页面
+     *
      * @param request
      * @return
      */
@@ -91,6 +103,7 @@ public class XblogController {
 
     /**
      * 发表博客
+     *
      * @param request
      * @return
      */
@@ -100,7 +113,6 @@ public class XblogController {
         String title = ServletRequestUtils.getStringParameter(request, "title", "");
         String content = ServletRequestUtils.getStringParameter(request, "content", "");
         //content = BlogStringUtil.beautifyContent(content);
-        System.out.println("content = " + content);
         Blog blog = new Blog();
         blog.setBlogTitle(title);
         blog.setBlogDesc(BlogStringUtil.extractDesc(content));
@@ -114,16 +126,26 @@ public class XblogController {
 
     /**
      * 发表评论
+     *
      * @param request
      * @return
      */
     @RequestMapping(value = "/addcomment", method = RequestMethod.POST)
     @ResponseBody
     public boolean addcomment(HttpServletRequest request) {
-        String comment = ServletRequestUtils.getStringParameter(request, "comment", "");
-        System.out.println(comment);
-        return true;
+        int blogId = ServletRequestUtils.getIntParameter(request, "blogId", -1);
+        String content = ServletRequestUtils.getStringParameter(request, "comment", "");
+        if (blogId < 0 || StringUtils.isBlank(content)) {
+            return false;
+        }
+        content = content.replaceAll("<p><br></p>", "");
+        Comment comment = new Comment();
+        comment.setCommentContent(content);
+        comment.setBlogId(blogId);
+        comment.setUserName("DYLM");
+        comment.setUserAvatar("http://avatar.csdn.net/6/1/E/3_heyijia0327.jpg");
+        comment.setCreateTime(new Date());
+        return commentService.addComment(comment);
     }
-
 
 }

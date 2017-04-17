@@ -17,6 +17,7 @@
         <div class="col-md-9">
             <div class="curtain">
                 <div class="article_title">
+                    <input id="blog_id" value="${blog.id}" style="display: none">
                     <h1>${blog.blogTitle}</h1>
                 </div>
                 <div class="article_content">
@@ -24,34 +25,32 @@
                     ${blog.blogContent}
                     </div>
                 </div>
+                <hr>
                 <#--评论列表-->
                 <div class="comment_list">
+                <#if commentList??&& (commentList?size > 0)>
+                    <#list commentList as item>
+                        <div class="comment_item">
+                            <div class="comment_header">
+                                ${commentList?size - item_index}楼
+                                <span style="color: #369;">${item.userName}</span>
+                                <span>${item.createTime?string("yyyy-MM-dd HH:mm:ss")}发表</span>
+                            </div>
+                            <div class="comment_avatar">
+                                <img src="${item.userAvatar}" width="40" height="40">
+                            </div>
+                            <div class="comment_content">
+                                ${item.commentContent}
+                            </div>
+                        </div>
+                    </#list>
+                <#else>
                     <div class="comment_item">
-                        <div class="comment_header">
-                            1楼
-                            <span style="color: #369;">DYLM</span>
-                            <span>2017-4-17 11:36:54发表</span>
-                        </div>
-                        <div class="comment_avatar">
-                            <img src="http://avatar.csdn.net/6/1/E/3_heyijia0327.jpg" width="40" height="40">
-                        </div>
-                        <div class="comment_content">
-                            哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
-                        </div>
+                    <div class="comment_content">
+                    暂无评论，来一发吧！
                     </div>
-                    <div class="comment_item">
-                        <div class="comment_header">
-                            2楼
-                            <span style="color: #369;">DYLM</span>
-                            <span>2017-4-17 11:36:54发表</span>
-                        </div>
-                        <div class="comment_avatar">
-                            <img src="http://avatar.csdn.net/8/8/7/3_haithink.jpg" width="40" height="40">
-                        </div>
-                        <div class="comment_content">
-                            12331231
-                        </div>
                     </div>
+                </#if>
                 </div>
 
                 <#include "editor_comment.ftl">

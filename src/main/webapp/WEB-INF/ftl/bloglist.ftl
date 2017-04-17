@@ -33,9 +33,6 @@
                         <span style="margin: 0 5px 0 0;">${blog.createTime?string("yyyy-MM-dd HH:mm:ss")}</span>
                         <span>阅读次数(${blog.viewCount})</span>
                     </div>
-                    <#--<p>-->
-                        <#--<a class="btn btn-primary btn-large" href="#">Learn more</a>-->
-                    <#--</p>-->
                 </div>
             </#list>
 

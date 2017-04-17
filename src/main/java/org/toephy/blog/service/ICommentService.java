@@ -1,0 +1,25 @@
+package org.toephy.blog.service;
+
+import org.toephy.blog.entity.Comment;
+
+import java.util.List;
+
+/**
+ * Created by Toephy on 2017.4.17 14:36
+ */
+public interface ICommentService {
+
+    /**
+     * 获取博客评论列表
+     * @param blogId
+     * @return
+     */
+    List<Comment> getCommentList(int blogId);
+
+    /**
+     * 添加评论
+     * @param comment
+     * @return
+     */
+    boolean addComment(Comment comment);
+}
