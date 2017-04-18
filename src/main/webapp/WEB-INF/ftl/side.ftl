@@ -7,7 +7,7 @@
         <#else>
         <li>
         </#if>
-            <a href="blog/all">我的博客</a>
+            <a href="blog/list/1">我的博客</a>
         </li>
 
         <#if active == "writeblog">

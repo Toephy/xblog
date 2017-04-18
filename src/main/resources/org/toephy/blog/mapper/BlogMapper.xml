@@ -15,7 +15,7 @@
 
 
     <select id="getCount" resultType="INTEGER">
-        SELECT COUNT (1) FROM blog;
+        SELECT COUNT(1) FROM blog;
     </select>
 
     <select id="getBlogbyId" parameterType="int" resultMap="blogMap">

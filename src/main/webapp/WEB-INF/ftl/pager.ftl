@@ -88,8 +88,8 @@
         if (no < 1) {
             no = 1;
         }
-        //qForm.page.value = no;
-        qForm.action = "${toURL}/" + no;
+//        qForm.page.value = no;
+        qForm.action = "${toURL}" + no;
         qForm.submit();
     }
 </script>

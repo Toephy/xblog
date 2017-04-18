@@ -44,7 +44,7 @@ public class XblogController {
         request.setAttribute("active", "bloglist");
         int pageSize = 10;
         Map<String, Object> data = blogService.blogList(pageNo, pageSize);
-        Pager pager = new Pager(pageNo, Integer.parseInt(data.get("totalPage").toString()), "/blog/list");
+        Pager pager = new Pager(pageNo, Integer.parseInt(data.get("totalPage").toString()), "blog/list/");
         map.addAttribute("pager", pager);
         map.addAttribute("blogList", data.get("blogs"));
         return "bloglist";

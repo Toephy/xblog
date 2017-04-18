@@ -2,6 +2,9 @@ package org.toephy.blog.util;
 
 import org.apache.commons.lang.StringUtils;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 /**
  * Created by Toephy on 2017/4/8 19:43
  */
@@ -25,10 +28,17 @@ public class BlogStringUtil {
     public static String extractDesc(String content) {
         if (StringUtils.isEmpty(content))
             return "";
-        content = content.replaceAll("<p>", "").replaceAll("</p>", " ").replaceAll("&nbsp;", " ").replaceAll("<br>", " ")
-                .replaceAll("\n", " ").replaceAll("<a[^>]+>","").replaceAll("</a>", "").replaceAll("<img[^>]+>","")
-                .replaceAll("<h1>", "").replaceAll("</h1>", " ").replaceAll("<h2>", "").replaceAll("</h2>", " ")
-                .replaceAll("<h3>", "").replaceAll("</h3>", " ").replaceAll("<h4>", "").replaceAll("</h4>", " ").trim();
+        String regEx_html="<[^>]+>"; //定义HTML标签的正则表达式
+
+        Pattern p_html=Pattern.compile(regEx_html,Pattern.CASE_INSENSITIVE);
+        Matcher m_html=p_html.matcher(content);
+        content=m_html.replaceAll("").trim(); //过滤html标签
+
+        //content = content.replaceAll("<p>", "").replaceAll("</p>", " ").replaceAll("&nbsp;", " ").replaceAll("<br>", " ")
+        //        .replaceAll("\n", " ").replaceAll("<a[^>]+>","").replaceAll("</a>", "").replaceAll("<img[^>]+>","")
+        //        .replaceAll("<div>", "").replaceAll("</div>", "").replaceAll("<span>", "").replaceAll("</span>", "")
+        //        .replaceAll("<h1>", "").replaceAll("</h1>", " ").replaceAll("<h2>", "").replaceAll("</h2>", " ")
+        //        .replaceAll("<h3>", "").replaceAll("</h3>", " ").replaceAll("<h4>", "").replaceAll("</h4>", " ").trim();
         int maxlength = 200;
         return (content.length() > maxlength ? content.substring(0, 200) : content) + " . . .";
     }
