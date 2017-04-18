@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.toephy.blog.dao.ICommentDao">
 
-    <resultMap id="commentMap" type="org.toephy.blog.entity.Comment">
+    <resultMap id="commentMap" type="org.toephy.blog.bean.entity.Comment">
         <id property="id" column="id" />
         <result property="blogId" column="blog_id" />
         <result property="userName" column="user_name" />
@@ -17,7 +17,7 @@
         SELECT * FROM comment WHERE blog_id = #{blogId} order BY id DESC;
     </select>
 
-    <insert id="insertComment" parameterType="org.toephy.blog.entity.Comment">
+    <insert id="insertComment" parameterType="org.toephy.blog.bean.entity.Comment">
         INSERT INTO comment
         (
         blog_id,

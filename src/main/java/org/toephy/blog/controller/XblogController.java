@@ -9,8 +9,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.toephy.blog.entity.Blog;
-import org.toephy.blog.entity.Comment;
+import org.toephy.blog.bean.dto.Pager;
+import org.toephy.blog.bean.entity.Blog;
+import org.toephy.blog.bean.entity.Comment;
 import org.toephy.blog.service.IBlogService;
 import org.toephy.blog.service.ICommentService;
 import org.toephy.blog.util.BlogStringUtil;
@@ -18,6 +19,7 @@ import org.toephy.blog.util.BlogStringUtil;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Toephy on 2017.3.29 16:52
@@ -37,11 +39,14 @@ public class XblogController {
      * @param map
      * @return
      */
-    @RequestMapping("/blog/all")
-    public String blogList(HttpServletRequest request, Model map) {
+    @RequestMapping("/blog/list/{pageNo}")
+    public String blogList(HttpServletRequest request, Model map, @PathVariable("pageNo") int pageNo) {
         request.setAttribute("active", "bloglist");
-        List<Blog> blogs = blogService.blogList();
-        map.addAttribute("blogList", blogs);
+        int pageSize = 10;
+        Map<String, Object> data = blogService.blogList(pageNo, pageSize);
+        Pager pager = new Pager(pageNo, Integer.parseInt(data.get("totalPage").toString()), "/blog/list");
+        map.addAttribute("pager", pager);
+        map.addAttribute("blogList", data.get("blogs"));
         return "bloglist";
     }
 

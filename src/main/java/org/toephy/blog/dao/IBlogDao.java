@@ -1,7 +1,7 @@
 package org.toephy.blog.dao;
 
 import org.apache.ibatis.annotations.Mapper;
-import org.toephy.blog.entity.Blog;
+import org.toephy.blog.bean.entity.Blog;
 
 import java.util.List;
 
@@ -11,9 +11,13 @@ import java.util.List;
 @Mapper
 public interface IBlogDao {
 
+    int getCount();
+
     Blog getBlogbyId(int id);
 
     List<Blog> getAllBlogs();
+
+    List<Blog> getBlogs(int startIndex, int offset);
 
     boolean insert(Blog blog);
 }

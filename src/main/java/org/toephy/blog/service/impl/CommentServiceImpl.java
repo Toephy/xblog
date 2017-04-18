@@ -2,9 +2,8 @@ package org.toephy.blog.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.util.CollectionUtils;
 import org.toephy.blog.dao.ICommentDao;
-import org.toephy.blog.entity.Comment;
+import org.toephy.blog.bean.entity.Comment;
 import org.toephy.blog.service.ICommentService;
 
 import java.util.ArrayList;

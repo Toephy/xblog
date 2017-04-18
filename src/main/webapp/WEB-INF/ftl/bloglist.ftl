@@ -40,7 +40,7 @@
                 <li>
                     <a href="#">上一页</a>
                 </li>
-                <li>
+                <li class="active">
                     <a href="#">1</a>
                 </li>
                 <li>

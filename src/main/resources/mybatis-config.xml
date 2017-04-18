@@ -22,7 +22,7 @@
     </settings>
 
     <typeAliases>
-        <package name="org.toephy.blog.entity"/>
+        <package name="org.toephy.blog.bean.entity"/>
     </typeAliases>
 
     <mappers>

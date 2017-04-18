@@ -1,4 +1,4 @@
-package org.toephy.blog.entity;
+package org.toephy.blog.bean.entity;
 
 import java.util.Date;
 

@@ -1,7 +1,7 @@
 package org.toephy.blog.dao;
 
 import org.apache.ibatis.annotations.Mapper;
-import org.toephy.blog.entity.Comment;
+import org.toephy.blog.bean.entity.Comment;
 
 import java.util.List;
 

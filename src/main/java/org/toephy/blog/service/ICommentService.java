@@ -1,6 +1,6 @@
 package org.toephy.blog.service;
 
-import org.toephy.blog.entity.Comment;
+import org.toephy.blog.bean.entity.Comment;
 
 import java.util.List;
 
