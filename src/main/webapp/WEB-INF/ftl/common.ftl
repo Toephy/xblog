@@ -4,7 +4,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
 <title>xblog</title>
-
+<link rel="icon" href="resources/image/icon.jpg" type="image/x-icon"/>
 <!-- Bootstrap -->
 <link href="resources/css/bootstrap.min.css" rel="stylesheet">
 <link href="resources/css/blog.css" rel="stylesheet">

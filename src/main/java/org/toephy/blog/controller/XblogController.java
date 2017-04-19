@@ -32,6 +32,11 @@ public class XblogController {
     @Autowired
     private ICommentService commentService;
 
+    @RequestMapping("/")
+    public String baseforward(HttpServletRequest request) {
+        return "forward:/blog/list/1";
+    }
+
     /**
      * 博客列表
      *

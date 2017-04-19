@@ -101,6 +101,9 @@
                 <a href="javascript:void(0)" onclick="turnOverPage(${totalPage})">尾页</a>
             </li>
         </#if>
+        <li class="disabled" style="margin-left: 10px;">
+            <a href="javascript:void(0)">共${totalPage}页</a>
+        </li>
     </ul>
 </form>
 <#--**********************************************************************************-->
