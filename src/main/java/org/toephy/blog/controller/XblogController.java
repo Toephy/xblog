@@ -42,7 +42,7 @@ public class XblogController {
     @RequestMapping("/blog/list/{pageNo}")
     public String blogList(HttpServletRequest request, Model map, @PathVariable("pageNo") int pageNo) {
         request.setAttribute("active", "bloglist");
-        int pageSize = 10;
+        int pageSize = 5;
         Map<String, Object> data = blogService.blogList(pageNo, pageSize);
         Pager pager = new Pager(pageNo, Integer.parseInt(data.get("totalPage").toString()), "blog/list/");
         map.addAttribute("pager", pager);
@@ -124,9 +124,7 @@ public class XblogController {
         blog.setBlogContent(content);
         blog.setViewCount(96542);
         blog.setCreateTime(new Date());
-        boolean b = blogService.addBlog(blog);
-        System.out.println("flag = " + b);
-        return true;
+        return blogService.addBlog(blog);
     }
 
     /**

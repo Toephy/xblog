@@ -24,9 +24,15 @@
     <ul class="pagination">
         <#if (pageNo == 1)>
             <li class="disabled">
+                <a href="javascript:void(0)">首页</a>
+            </li>
+            <li class="disabled">
                 <a href="javascript:void(0)">上一页</a>
             </li>
         <#else>
+            <li>
+                <a href="javascript:void(0)" onclick="turnOverPage(1)">首页</a>
+            </li>
             <li>
                 <a href="javascript:void(0)" onclick="turnOverPage(${pageNo - 1})">上一页</a>
             </li>
@@ -47,7 +53,20 @@
             </#list>
         <#else>
             <#assign done=0>
-            <#list -2..5 as i>
+            <#assign left=-2>
+            <#assign right=2>
+            <#if (pageNo <= 2)>
+                <#assign left = (1 - pageNo)>
+                <#assign right = (5 - pageNo)>
+            <#elseif (pageNo > 2 && pageNo < (totalPage -2))>
+                <#assign left = -2>
+                <#assign right = 2>
+            <#elseif (pageNo >= totalPage - 2)>
+                <#assign left = (totalPage - pageNo - 4)>
+                <#assign right = (totalPage - pageNo)>
+            </#if>
+
+            <#list left..right as i>
                 <#if ((pageNo + i > 0) && (pageNo + i <= totalPage))>
                     <#if (pageNo == (pageNo + i))>
                         <li class="active">
@@ -71,9 +90,15 @@
             <li class="disabled">
                 <a href="javascript:void(0)">下一页</a>
             </li>
+            <li class="disabled">
+                <a href="javascript:void(0)">尾页</a>
+            </li>
         <#else>
             <li>
                 <a href="javascript:void(0)" onclick="turnOverPage(${pageNo + 1})">下一页</a>
+            </li>
+            <li>
+                <a href="javascript:void(0)" onclick="turnOverPage(${totalPage})">尾页</a>
             </li>
         </#if>
     </ul>

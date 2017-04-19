@@ -28,11 +28,11 @@ public class BlogStringUtil {
     public static String extractDesc(String content) {
         if (StringUtils.isEmpty(content))
             return "";
-        String regEx_html="<[^>]+>"; //定义HTML标签的正则表达式
 
-        Pattern p_html=Pattern.compile(regEx_html,Pattern.CASE_INSENSITIVE);
-        Matcher m_html=p_html.matcher(content);
-        content=m_html.replaceAll("").trim(); //过滤html标签
+        String regEx = "<[^>]+>"; //定义HTML标签的正则表达式
+        Pattern pattern = Pattern.compile(regEx, Pattern.CASE_INSENSITIVE);
+        Matcher matcher = pattern.matcher(content);
+        content = matcher.replaceAll("").trim(); //过滤html标签
 
         //content = content.replaceAll("<p>", "").replaceAll("</p>", " ").replaceAll("&nbsp;", " ").replaceAll("<br>", " ")
         //        .replaceAll("\n", " ").replaceAll("<a[^>]+>","").replaceAll("</a>", "").replaceAll("<img[^>]+>","")
@@ -51,7 +51,7 @@ public class BlogStringUtil {
         str = str.replaceFirst("<div>", "").replaceFirst("</div>", "");
         System.out.println(str);
 
-        String s = "生成<img style=\"max-width:100%;\" src=\"http://img0.imgtn.bdimg.com/it/u=251234813,891911113&fm=23&amp;gp=0.jpg\">算法</a>主要>";
+        String s = "生<abv>成<img style=\"max-width:100%;\" src=\"http://img0.imgtn.bdimg.com/it/u=251234813,891911113&fm=23&amp;gp=0.jpg\">算法</a>主要>";
         System.out.println(extractDesc(s));
     }
 }
