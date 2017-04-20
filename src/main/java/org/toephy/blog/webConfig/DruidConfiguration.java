@@ -26,49 +26,49 @@ public class DruidConfiguration {
     @Value("${spring.datasource.driver-class-name}")
     private String driverClassName;
 
-    @Value("${spring.datasource.initialSize?:0}")
+    @Value("${spring.datasource.initialSize:0}")
     private int initialSize;
 
-    @Value("${spring.datasource.minIdle?:0}")
+    @Value("${spring.datasource.minIdle:0}")
     private int minIdle;
 
-    @Value("${spring.datasource.maxActive?:8}")
+    @Value("${spring.datasource.maxActive:8}")
     private int maxActive;
 
-    @Value("${spring.datasource.maxWait?:-1}")
+    @Value("${spring.datasource.maxWait:-1}")
     private int maxWait;
 
-    @Value("${spring.datasource.timeBetweenEvictionRunsMillis?:30000}")
+    @Value("${spring.datasource.timeBetweenEvictionRunsMillis:30000}")
     private int timeBetweenEvictionRunsMillis;
 
-    @Value("${spring.datasource.minEvictableIdleTimeMillis?:1800000}")
+    @Value("${spring.datasource.minEvictableIdleTimeMillis:1800000}")
     private int minEvictableIdleTimeMillis;
 
     @Value("${spring.datasource.validationQuery:#{null}}")
     private String validationQuery;
 
-    @Value("${spring.datasource.testWhileIdle?:#{false}}")
+    @Value("${spring.datasource.testWhileIdle:#{false}}")
     private boolean testWhileIdle;
 
-    @Value("${spring.datasource.testOnBorrow?:#{false}}")
+    @Value("${spring.datasource.testOnBorrow:#{false}}")
     private boolean testOnBorrow;
 
-    @Value("${spring.datasource.testOnReturn?:#{false}}")
+    @Value("${spring.datasource.testOnReturn:#{false}}")
     private boolean testOnReturn;
 
-    @Value("${spring.datasource.poolPreparedStatements?:#{false}}")
+    @Value("${spring.datasource.poolPreparedStatements:#{false}}")
     private boolean poolPreparedStatements;
 
-    @Value("${spring.datasource.maxPoolPreparedStatementPerConnectionSize?:10}")
+    @Value("${spring.datasource.maxPoolPreparedStatementPerConnectionSize:0}")
     private int maxPoolPreparedStatementPerConnectionSize;
 
-    @Value("${spring.datasource.filters?:#{null}}")
+    @Value("${spring.datasource.filters:#{null}}")
     private String filters;
 
-    @Value("${spring.datasource.connectionProperties?:#{null}}")
+    @Value("${spring.datasource.connectionProperties:#{null}}")
     private String connectionProperties;
 
-    @Value("${spring.datasource.useGlobalDataSourceStat?:#{false}}")
+    @Value("${spring.datasource.useGlobalDataSourceStat:#{false}}")
     private boolean useGlobalDataSourceStat;
 
     @Bean(destroyMethod = "close", initMethod = "init")
