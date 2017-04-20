@@ -11,15 +11,15 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-3">
+        <div class="col-md-3 animate_left">
             <#include "side.ftl">
         </div>
-        <div class="col-md-9">
+        <div class="col-md-9 animate_right">
             <#list blogList as blog>
                 <div class="curtain">
                     <div class="article_title">
                         <h1>
-                            <a href="blog/${blog.id}" target="_blank">
+                            <a href="blog/${blog.id}">
                                 ${blog.blogTitle}
                             </a>
                         </h1>
@@ -40,6 +40,8 @@
             <@p.pager pageNo=pager.pageNo totalPage=pager.totalPage toURL="${pager.toURL}"/>
         </div>
     </div>
+<#include "foot.ftl">
 </div>
+
 </body>
 </html>

@@ -14,7 +14,7 @@
         <div class="col-md-3">
         <#include "side.ftl">
         </div>
-        <div class="col-md-9">
+        <div class="col-md-9 xfade">
             <div class="curtain">
                 <div class="article_title">
                     <input id="blog_id" value="${blog.id}" style="display: none">
@@ -57,6 +57,7 @@
             </div>
         </div>
     </div>
+<#include "foot.ftl">
 </div>
 </body>
 </html>

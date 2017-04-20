@@ -23,3 +23,4 @@
 
 <!--引入wangEditor js-->
 <script type="text/javascript" src="resources/wangEditor/js/wangEditor.min.js"></script>
+<script type="text/javascript" src="resources/js/xblog.js"></script>

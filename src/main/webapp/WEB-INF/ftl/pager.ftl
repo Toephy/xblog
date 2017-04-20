@@ -21,7 +21,7 @@
 <#-- 输出分页表单 -->
 <#--**********************************************************************************-->
 <form method="GET" action="" name="qPagerForm">
-    <ul class="pagination">
+    <ul class="pagination" style="margin-top: 0px">
         <#if (pageNo == 1)>
             <li class="disabled">
                 <a href="javascript:void(0)">首页</a>

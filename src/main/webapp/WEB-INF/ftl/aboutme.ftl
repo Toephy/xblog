@@ -14,8 +14,8 @@
         <div class="col-md-3">
         <#include "side.ftl">
         </div>
-        <div class="col-md-9 content">
-            <div class="jumbotron well">
+        <div class="col-md-9 content xfade">
+            <div class="curtain">
                 <h2>
                     关于我
                 </h2>
@@ -25,13 +25,11 @@
                     举头望明月，<br>
                     低头思故乡。<br>
                 </p>
-                <p>
-                    <a class="btn btn-primary btn-large" href="#">Learn more</a>
-                </p>
             </div>
             <#include "loginthirdparty.ftl">
         </div>
     </div>
+<#include "foot.ftl">
 </div>
 </body>
 </html>

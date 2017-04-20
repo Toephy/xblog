@@ -14,8 +14,8 @@
         <div class="col-md-3">
         <#include "side.ftl">
         </div>
-        <div class="col-md-9 content">
-            <div class="jumbotron well">
+        <div class="col-md-9 content xfade">
+            <div class="curtain">
                 <h2>
                     留言板
                 </h2>
@@ -30,6 +30,8 @@
         <#include "editor_comment.ftl">
         </div>
     </div>
+<#include "foot.ftl">
 </div>
+
 </body>
 </html>
