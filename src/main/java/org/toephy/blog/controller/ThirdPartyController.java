@@ -5,7 +5,9 @@ import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import weibo4j.Oauth;
+import weibo4j.Users;
 import weibo4j.http.AccessToken;
+import weibo4j.model.User;
 import weibo4j.model.WeiboException;
 
 import javax.servlet.http.HttpServletRequest;
@@ -32,18 +34,13 @@ public class ThirdPartyController {
     public String weiboauthorize(HttpServletRequest request) {
         String code = ServletRequestUtils.getStringParameter(request, "code", "..");
         System.out.println("code = " + code);
-        //Map<String, String> params = new HashMap<String, String>();
-        //params.put("code", code);
-        //params.put("redirect_uri", REDIRECT_URI);
-        //params.put("client_id", CLIENT_ID);
-        //params.put("client_secret", CLIENT_SECRET);
-        //params.put("grant_type", "authorization_code");
-        //return HttpRequest.sendPost("https://api.weibo.com/oauth2/access_token", params);
 
         Oauth oauth = new Oauth();
         try {
-            AccessToken accessTokenByCode = oauth.getAccessTokenByCode(code);
-            return accessTokenByCode.toString();
+            AccessToken accessToken = oauth.getAccessTokenByCode(code);
+            Users um = new Users(accessToken.getAccessToken());
+            User user = um.showUserById(accessToken.getUid());
+            return user.toString();
         } catch (WeiboException e) {
             e.printStackTrace();
         }
