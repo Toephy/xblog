@@ -25,7 +25,7 @@ public class ThirdPartyController {
 
     /**
      * 微博授权回调地址
-     *
+     * https://api.weibo.com/oauth2/authorize?client_id=1705470590&response_type=code&redirect_uri=http://www.toephy.com/weiboauthorize/callbak
      * @param request
      * @return
      */
