@@ -30,7 +30,7 @@ public class ThirdPartyController {
      * @return
      */
     @RequestMapping(value = "/weiboauthorize/callbak")
-    @ResponseBody
+    //@ResponseBody
     public String weiboauthorize(HttpServletRequest request) {
         String code = ServletRequestUtils.getStringParameter(request, "code", "..");
         System.out.println("code = " + code);
@@ -40,11 +40,13 @@ public class ThirdPartyController {
             AccessToken accessToken = oauth.getAccessTokenByCode(code);
             Users um = new Users(accessToken.getAccessToken());
             User user = um.showUserById(accessToken.getUid());
-            return user.toString();
+            request.getSession().setAttribute("weiboAvatar", user.getAvatarLarge());
+            request.getSession().setAttribute("nickname", user.getName());
+            //return user.toString();
         } catch (WeiboException e) {
             e.printStackTrace();
         }
-        return null;
+        return "blink";
     }
 
     /**

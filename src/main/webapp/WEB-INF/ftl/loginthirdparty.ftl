@@ -19,11 +19,9 @@
                 <img src="http://open.51094.com/Public/img/hezuo/hz_1_24.jpg" style="max-width: 40px; max-height: 40px; border-radius: 8px;">
             </a>
             <a href="https://api.weibo.com/oauth2/authorize?client_id=1705470590&response_type=code&redirect_uri=http://www.toephy.com/weiboauthorize/callbak"
-               target="myFrameName"
+               target="_blank"
                class="open_login_2" style="margin: 9px 3px;">
                 <img src="http://open.51094.com/Public/img/hezuo/hz_2_24.jpg" style="max-width: 40px; max-height: 40px; border-radius: 8px;">
             </a>
         </span>
-
-        <iframe id="myFrameId" name="myFrameName" scrolling="no" frameborder="0" style="width:800px; height:500px; "></iframe>
 </div>

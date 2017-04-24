@@ -52,7 +52,7 @@
                     </div>
                 </#if>
                 </div>
-
+                <#include "loginthirdparty.ftl">
                 <#include "editor_comment.ftl">
             </div>
         </div>

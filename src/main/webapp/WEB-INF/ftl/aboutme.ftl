@@ -26,7 +26,6 @@
                     低头思故乡。<br>
                 </p>
             </div>
-            <#include "loginthirdparty.ftl">
         </div>
     </div>
 <#include "foot.ftl">
