@@ -52,7 +52,11 @@
                     </div>
                 </#if>
                 </div>
-                <#include "loginthirdparty.ftl">
+
+                <#if !session_uid?exists>
+                    <#include "loginthirdparty.ftl">
+                </#if>
+
                 <#include "editor_comment.ftl">
             </div>
         </div>

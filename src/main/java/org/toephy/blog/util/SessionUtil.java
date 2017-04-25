@@ -197,7 +197,7 @@ public class SessionUtil {
     }
 
     public static void main(String[] args) {
-        SessionInfo sessionInfo = SessionUtil.getSessionById("9z26nfAM-HlY_WnIafz5");
+        SessionInfo sessionInfo = SessionUtil.getSessionById("UBhmwWAM-H9qhCheeDJ_");
         System.out.println(sessionInfo.isExpired());
         System.out.println(SessionUtil.getSessionById("XQPz1ZvTvZjogsQ_VGOa").getUid());
 

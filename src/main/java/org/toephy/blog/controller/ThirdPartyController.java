@@ -9,13 +9,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.toephy.blog.bean.dto.SessionInfo;
 import org.toephy.blog.bean.entity.User;
 import org.toephy.blog.service.IUserService;
+import org.toephy.blog.util.CookieUtil;
 import org.toephy.blog.util.SessionUtil;
 import weibo4j.Oauth;
 import weibo4j.Users;
 import weibo4j.http.AccessToken;
-import weibo4j.model.WeiboException;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Date;
@@ -70,15 +69,14 @@ public class ThirdPartyController {
                     SessionInfo sessionInfo = SessionUtil.create(localUser.getId(), TimeUnit.DAYS.toMillis(180));
                     if (sessionInfo != null) {
                         String sessionId = sessionInfo.getSessionId();
+                        request.getSession().setAttribute("session_uid", localUser.getId());
                         request.getSession().setAttribute("userAvatar", weiboUser.getAvatarLarge());
                         request.getSession().setAttribute("nickname", weiboUser.getName());
 
-                        Cookie cookie = new Cookie("sessionId", sessionId);
-                        cookie.setMaxAge((int)TimeUnit.DAYS.toSeconds(150));
-                        //设置路径，这个路径即该工程下都可以访问该cookie.
-                        //如果不设置路径，那么只有设置该cookie路径及其子路径可以访问
-                        cookie.setPath("/");
-                        response.addCookie(cookie);
+
+                        CookieUtil.addCookie(response, "sessionId", sessionId, (int)TimeUnit.DAYS.toSeconds(150));
+                        CookieUtil.addCookie(response, "userAvatar", weiboUser.getAvatarLarge(), (int)TimeUnit.DAYS.toSeconds(150));
+                        CookieUtil.addCookie(response, "nickname", weiboUser.getName(), (int)TimeUnit.DAYS.toSeconds(150));
 
                         success = true;
                     }

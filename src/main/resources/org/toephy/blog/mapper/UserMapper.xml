@@ -14,7 +14,7 @@
     </resultMap>
 
 
-    <select id="getUserByOpenId" parameterType="String" resultType="userMap">
+    <select id="getUserByOpenId" parameterType="String" resultMap="userMap">
         SELECT * FROM user WHERE openid = #{openId};
     </select>
 

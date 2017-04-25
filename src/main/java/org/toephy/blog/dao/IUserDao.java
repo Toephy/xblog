@@ -1,10 +1,12 @@
 package org.toephy.blog.dao;
 
+import org.apache.ibatis.annotations.Mapper;
 import org.toephy.blog.bean.entity.User;
 
 /**
  * Created by Toephy on 2017.4.25 15:14
  */
+@Mapper
 public interface IUserDao {
 
     /**

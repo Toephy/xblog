@@ -1,5 +1,5 @@
 <script type="text/javascript" src="http://open.51094.com/user/myscript/158e701c75c80a.html"></script>
-<div>
+<div style="margin: 10px,0">
     <#--其他账号登录：-->
         <#--<span>-->
             <#--<a href="http://open.51094.com/user/hezuo/1.html?appid=158e701c75c80a&amp;token=8abb7ab9d47ebec894dd74c4003233bd"-->
