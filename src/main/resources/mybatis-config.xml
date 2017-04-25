@@ -28,6 +28,7 @@
     <mappers>
         <mapper resource="org/toephy/blog/mapper/BlogMapper.xml"/>
         <mapper resource="org/toephy/blog/mapper/CommentMapper.xml"/>
+        <mapper resource="org/toephy/blog/mapper/UserMapper.xml"/>
     </mappers>
     
 </configuration>

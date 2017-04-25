@@ -1,16 +1,25 @@
 package org.toephy.blog.controller;
 
+import org.apache.commons.lang.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.toephy.blog.bean.dto.SessionInfo;
+import org.toephy.blog.bean.entity.User;
+import org.toephy.blog.service.IUserService;
+import org.toephy.blog.util.SessionUtil;
 import weibo4j.Oauth;
 import weibo4j.Users;
 import weibo4j.http.AccessToken;
-import weibo4j.model.User;
 import weibo4j.model.WeiboException;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by Toephy on 2017.4.7 11:29
@@ -19,9 +28,8 @@ import javax.servlet.http.HttpServletRequest;
 @Controller
 public class ThirdPartyController {
 
-    private static final String CLIENT_ID = "1705470590";
-    private static final String CLIENT_SECRET = "f358f07834b7057b516a7e85e3237f39";
-    private static final String REDIRECT_URI = "http://www.toephy.com/weiboauthorize/callbak";
+    @Autowired
+    private IUserService userService;
 
     /**
      * 微博授权回调地址
@@ -30,41 +38,57 @@ public class ThirdPartyController {
      * @return
      */
     @RequestMapping(value = "/weiboauthorize/callbak")
-    //@ResponseBody
-    public String weiboauthorize(HttpServletRequest request) {
+    public String weiboauthorize(HttpServletRequest request, HttpServletResponse response, Model map) {
         String code = ServletRequestUtils.getStringParameter(request, "code", "..");
         System.out.println("code = " + code);
 
+        boolean success = false;
         Oauth oauth = new Oauth();
         try {
             AccessToken accessToken = oauth.getAccessTokenByCode(code);
             Users um = new Users(accessToken.getAccessToken());
-            User user = um.showUserById(accessToken.getUid());
-            request.getSession().setAttribute("weiboAvatar", user.getAvatarLarge());
-            request.getSession().setAttribute("nickname", user.getName());
-            //return user.toString();
-        } catch (WeiboException e) {
+            weibo4j.model.User weiboUser = um.showUserById(accessToken.getUid());
+
+
+            if (StringUtils.isNotBlank(weiboUser.getId())) {
+                String openid = weiboUser.getId();
+                User localUser = userService.getUserByOpenId(openid);
+                if (localUser == null) {
+                    localUser = new User();
+                    localUser.setOpenId(openid);
+                    localUser.setNickname(weiboUser.getName());
+                    localUser.setAvatarurl(weiboUser.getAvatarLarge());
+                    localUser.setRegesterType(3);
+                    localUser.setCreateTime(new Date());
+                    int id = userService.addUser(localUser);
+                    if (id > 0) {
+                        localUser.setId(id);
+                    }
+                }
+
+                if (localUser.getId() > 0) {
+                    SessionInfo sessionInfo = SessionUtil.create(localUser.getId(), TimeUnit.DAYS.toMillis(180));
+                    if (sessionInfo != null) {
+                        String sessionId = sessionInfo.getSessionId();
+                        request.getSession().setAttribute("userAvatar", weiboUser.getAvatarLarge());
+                        request.getSession().setAttribute("nickname", weiboUser.getName());
+
+                        Cookie cookie = new Cookie("sessionId", sessionId);
+                        cookie.setMaxAge((int)TimeUnit.DAYS.toSeconds(150));
+                        //设置路径，这个路径即该工程下都可以访问该cookie.
+                        //如果不设置路径，那么只有设置该cookie路径及其子路径可以访问
+                        cookie.setPath("/");
+                        response.addCookie(cookie);
+
+                        success = true;
+                    }
+                }
+            }
+        } catch (Exception e) {
             e.printStackTrace();
         }
+        map.addAttribute("success", success);
         return "blink";
     }
 
-    /**
-     * 微博accesstoken回调地址
-     *
-     * @param request
-     * @return
-     */
-    //@RequestMapping(value = "/weiboaccesstoken/callbak")
-    //public String weiboaccesstoken(HttpServletRequest request) {
-    //    String code = request.getHeader("code");
-    //    System.out.println("code = " + code);
-    //    Map<String, String> params = new HashMap<String, String>();
-    //    params.put("redirect_uri", "");
-    //    params.put("code", code);
-    //    params.put("client_id", CLIENT_ID);
-    //    params.put("client_secret", CLIENT_SECRET);
-    //    params.put("grant_type", "authorization_code");
-    //    HttpRequest.sendGet("https://api.weibo.com/oauth2/access_token", params);
-    //}
 }
