@@ -1,6 +1,12 @@
 <div style="background: #fff;margin-bottom: 20px;">
-    <span class="ico_reply"></span>
-    <span style="font-weight: 700;color: #000;">发表评论</span>
+    <div style=" min-height: 40px;">
+        <span class="ico_reply"></span>
+        <span style="font-weight: 700;color: #000;">发表评论</span>
+        <div style="float: right;">
+            <span>DYLM</span>
+            <img src="http://tva4.sinaimg.cn/crop.0.0.180.180.180/95b58b7fjw1e8qgp5bmzyj2050050aa8.jpg" width="40" height="40">
+        </div>
+    </div>
     <div id="comment" style="height:200px;max-height:300px;">
     </div>
     <br>
