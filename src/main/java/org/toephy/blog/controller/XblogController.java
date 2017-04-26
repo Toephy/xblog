@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.toephy.blog.bean.dto.CommentDto;
 import org.toephy.blog.bean.dto.Pager;
 import org.toephy.blog.bean.entity.Blog;
 import org.toephy.blog.bean.entity.Comment;
@@ -69,7 +70,7 @@ public class XblogController {
         if (blog == null) {
             return "redirect:/blog/all";
         }
-        List<Comment> commentList = commentService.getCommentList(id);
+        List<CommentDto> commentList = commentService.getCommentList(id);
         map.addAttribute("blog", blog);
         map.addAttribute("commentList", commentList);
         return "blogdetail";
@@ -150,8 +151,7 @@ public class XblogController {
         Comment comment = new Comment();
         comment.setCommentContent(content);
         comment.setBlogId(blogId);
-        comment.setUserName("DYLM");
-        comment.setUserAvatar("http://avatar.csdn.net/6/1/E/3_heyijia0327.jpg");
+        comment.setUid(37);
         comment.setCreateTime(new Date());
         return commentService.addComment(comment);
     }

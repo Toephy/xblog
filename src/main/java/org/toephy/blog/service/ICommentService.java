@@ -1,5 +1,6 @@
 package org.toephy.blog.service;
 
+import org.toephy.blog.bean.dto.CommentDto;
 import org.toephy.blog.bean.entity.Comment;
 
 import java.util.List;
@@ -14,7 +15,7 @@ public interface ICommentService {
      * @param blogId
      * @return
      */
-    List<Comment> getCommentList(int blogId);
+    List<CommentDto> getCommentList(int blogId);
 
     /**
      * 添加评论

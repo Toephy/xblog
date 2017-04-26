@@ -4,16 +4,15 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.toephy.blog.dao.ICommentDao">
 
-    <resultMap id="commentMap" type="org.toephy.blog.bean.entity.Comment">
+    <resultMap id="comment_user_Map" type="org.toephy.blog.bean.dto.CommentDto">
         <id property="id" column="id" />
         <result property="blogId" column="blog_id" />
-        <result property="userName" column="user_name" />
-        <result property="userAvatar" column="user_avatar" />
         <result property="commentContent" column="comment_content" />
         <result property="createTime" column="create_time" />
+        <association property="user" column="uid" select="org.toephy.blog.dao.IUserDao.getUserById"/>
     </resultMap>
 
-    <select id="getCommentList" resultMap="commentMap" resultType="list">
+    <select id="getCommentList" resultMap="comment_user_Map" resultType="list">
         SELECT * FROM comment WHERE blog_id = #{blogId} order BY id DESC;
     </select>
 
@@ -21,16 +20,14 @@
         INSERT INTO comment
         (
         blog_id,
-        user_name,
-        user_avatar,
+        uid,
         comment_content,
         create_time
         )
         VALUES
         (
         #{blogId, jdbcType=INTEGER},
-        #{userName, jdbcType=INTEGER},
-        #{userAvatar, jdbcType=INTEGER},
+        #{uid, jdbcType=INTEGER},
         #{commentContent, jdbcType=VARCHAR},
         #{createTime}
         );

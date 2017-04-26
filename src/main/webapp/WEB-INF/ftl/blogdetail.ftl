@@ -33,11 +33,11 @@
                         <div class="comment_item">
                             <div class="comment_header">
                                 ${commentList?size - item_index}楼
-                                <span style="color: #369;">${item.userName}</span>
+                                <span style="color: #369;">${item.user.nickname}</span>
                                 <span>${item.createTime?string("yyyy-MM-dd HH:mm:ss")}发表</span>
                             </div>
                             <div class="comment_avatar">
-                                <img src="${item.userAvatar}" width="40" height="40">
+                                <img src="${item.user.avatarurl}" width="40" height="40">
                             </div>
                             <div class="comment_content">
                                 ${item.commentContent}

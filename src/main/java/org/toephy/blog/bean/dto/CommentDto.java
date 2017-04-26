@@ -1,14 +1,16 @@
-package org.toephy.blog.bean.entity;
+package org.toephy.blog.bean.dto;
+
+import org.toephy.blog.bean.entity.User;
 
 import java.util.Date;
 
 /**
- * Created by Toephy on 2017.4.17 14:24
+ * Created by Toephy on 2017.4.26 11:37
  */
-public class Comment {
+public class CommentDto {
     private int id;
     private int blogId;
-    private int uid;
+    private User user;
     private String commentContent;
     private Date createTime;
 
@@ -28,12 +30,12 @@ public class Comment {
         this.blogId = blogId;
     }
 
-    public int getUid() {
-        return uid;
+    public User getUser() {
+        return user;
     }
 
-    public void setUid(int uid) {
-        this.uid = uid;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public String getCommentContent() {
