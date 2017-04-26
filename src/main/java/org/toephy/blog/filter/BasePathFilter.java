@@ -30,15 +30,17 @@ public class BasePathFilter extends HandlerInterceptorAdapter {
             String sessionId = "";
             String userAvatar = "";
             String nickname = "";
-            for (Cookie cookie : cookies) {
-                if (cookie.getName().equals("sessionId")) {
-                    sessionId = URLDecoder.decode(cookie.getValue(), "UTF-8");
-                }
-                if (cookie.getName().equals("userAvatar")) {
-                    userAvatar = URLDecoder.decode(cookie.getValue(), "UTF-8");
-                }
-                if (cookie.getName().equals("nickname")) {
-                    nickname = URLDecoder.decode(cookie.getValue(), "UTF-8");
+            if (cookies != null) {
+                for (Cookie cookie : cookies) {
+                    if (cookie.getName().equals("sessionId")) {
+                        sessionId = URLDecoder.decode(cookie.getValue(), "UTF-8");
+                    }
+                    if (cookie.getName().equals("userAvatar")) {
+                        userAvatar = URLDecoder.decode(cookie.getValue(), "UTF-8");
+                    }
+                    if (cookie.getName().equals("nickname")) {
+                        nickname = URLDecoder.decode(cookie.getValue(), "UTF-8");
+                    }
                 }
             }
 
