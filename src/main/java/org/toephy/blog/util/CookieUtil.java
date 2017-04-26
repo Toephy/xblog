@@ -1,8 +1,8 @@
 package org.toephy.blog.util;
 
 import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 
 /**
@@ -22,6 +22,24 @@ public class CookieUtil {
             //如果不设置路径，那么只有设置该cookie路径及其子路径可以访问
             cookie.setPath("/");
             response.addCookie(cookie);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 清除所有cookie
+     */
+    public static void clearCookie(HttpServletRequest request, HttpServletResponse response) {
+        try {
+            Cookie cookies[] = request.getCookies();
+            if (cookies != null) {
+                for (Cookie cookie : cookies) {
+                    cookie.setMaxAge(0);
+                    cookie.setPath("/");
+                    response.addCookie(cookie);
+                }
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }

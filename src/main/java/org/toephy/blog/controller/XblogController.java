@@ -13,6 +13,7 @@ import org.toephy.blog.bean.dto.CommentDto;
 import org.toephy.blog.bean.dto.Pager;
 import org.toephy.blog.bean.entity.Blog;
 import org.toephy.blog.bean.entity.Comment;
+import org.toephy.blog.constants.AppConstant;
 import org.toephy.blog.service.IBlogService;
 import org.toephy.blog.service.ICommentService;
 import org.toephy.blog.util.BlogStringUtil;
@@ -68,7 +69,7 @@ public class XblogController {
         request.setAttribute("active", "bloglist");
         Blog blog = blogService.getBlogById(id);
         if (blog == null) {
-            return "redirect:/blog/all";
+            return "redirect:/blog/list/1";
         }
         List<CommentDto> commentList = commentService.getCommentList(id);
         map.addAttribute("blog", blog);
@@ -108,6 +109,19 @@ public class XblogController {
      */
     @RequestMapping("/writeblog")
     public String writeblog(HttpServletRequest request) {
+        int uidInSession = -1;
+        try {
+            Object object = request.getSession().getAttribute("session_uid");
+            if (object != null) {
+                uidInSession = Integer.parseInt(object.toString());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        if (uidInSession != AppConstant.HOST_UID) {
+            return "redirect:/blog/list/1";
+        }
+
         request.setAttribute("active", "writeblog");
         return "writeblog";
     }
@@ -121,8 +135,19 @@ public class XblogController {
     @RequestMapping(value = "/addblog", method = RequestMethod.POST)
     @ResponseBody
     public boolean addblog(HttpServletRequest request) {
+        int uid = ServletRequestUtils.getIntParameter(request, "uid", 0);
         String title = ServletRequestUtils.getStringParameter(request, "title", "");
         String content = ServletRequestUtils.getStringParameter(request, "content", "");
+        int uidInSession = -1;
+        try {
+            uidInSession = Integer.parseInt(request.getSession().getAttribute("session_uid").toString());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        if (uid != uidInSession || uidInSession != AppConstant.HOST_UID) {
+            return false;
+        }
+
         //content = BlogStringUtil.beautifyContent(content);
         Blog blog = new Blog();
         blog.setBlogTitle(title);
@@ -142,16 +167,17 @@ public class XblogController {
     @RequestMapping(value = "/addcomment", method = RequestMethod.POST)
     @ResponseBody
     public boolean addcomment(HttpServletRequest request) {
+        int uid = ServletRequestUtils.getIntParameter(request, "uid", 0);
         int blogId = ServletRequestUtils.getIntParameter(request, "blogId", -1);
         String content = ServletRequestUtils.getStringParameter(request, "comment", "");
-        if (blogId < 0 || StringUtils.isBlank(content)) {
+        if (uid <= 0 || blogId < 0 || StringUtils.isBlank(content)) {
             return false;
         }
         content = content.replaceAll("<p><br></p>", "");
         Comment comment = new Comment();
         comment.setCommentContent(content);
         comment.setBlogId(blogId);
-        comment.setUid(37);
+        comment.setUid(uid);
         comment.setCreateTime(new Date());
         return commentService.addComment(comment);
     }

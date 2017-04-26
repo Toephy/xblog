@@ -1,4 +1,5 @@
 <div style="background: #fff;padding-left: 12px"><h3>发表博客</h3></div>
+<input id="edit_blog_uid" value="${session_uid?default('-1')}" style="display: none">
 <div class="form-group">
     <label class="sr-only" for="name">标题</label>
     <input type="text" id="blog_title" class="form-control" placeholder="请输入标题">
@@ -68,6 +69,9 @@
     editor.create();
 
     $("#submit_blog").click(function () {
+
+        var uid = $("#edit_blog_uid").val();
+
         var blogTitle = $("#blog_title").val();
         // 获取编辑器区域完整html代码
         var blogContent = editor.$txt.html();
@@ -80,12 +84,18 @@
             url: "addblog",
             async: false,
             method: "POST",
-            data:{
-                title:blogTitle,
-                content:blogContent
+            data: {
+                uid: uid,
+                title: blogTitle,
+                content: blogContent
             },
             success: function (data, textStatus, jqXHR) {
-                alert(data);
+                if (data) {
+                    alert("提交成功");
+                    location.reload();
+                } else {
+                    alert("提交失败");
+                }
             }
         });
     });

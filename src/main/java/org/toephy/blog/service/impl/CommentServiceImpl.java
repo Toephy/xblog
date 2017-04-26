@@ -2,6 +2,7 @@ package org.toephy.blog.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 import org.toephy.blog.bean.dto.CommentDto;
 import org.toephy.blog.dao.ICommentDao;
 import org.toephy.blog.bean.entity.Comment;
@@ -22,11 +23,15 @@ public class CommentServiceImpl implements ICommentService {
     @Override
     public List<CommentDto> getCommentList(int blogId) {
         List<CommentDto> commentList = commentDao.getCommentList(blogId);
-        if (commentList != null) {
-            return commentList;
-        } else {
-            return new ArrayList<CommentDto>();
+        List<CommentDto> result = new ArrayList<CommentDto>();
+        if (!CollectionUtils.isEmpty(commentList)) {
+            for (CommentDto item : commentList) {
+                if (item.getUser() != null) {
+                    result.add(item);
+                }
+            }
         }
+        return result;
     }
 
     @Override

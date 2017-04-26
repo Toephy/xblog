@@ -10,13 +10,16 @@
             <a href="blog/list/1">我的博客</a>
         </li>
 
-        <#if active == "writeblog">
-        <li class="active">
-        <#else>
-        <li>
-        </#if>
+        <#if (session_uid)?? && session_uid == 37>
+            <#if active == "writeblog">
+            <li class="active">
+            <#else>
+            <li>
+            </#if>
             <a href="writeblog">写博客</a>
-        </li>
+            </li>
+        </#if>
+
 
         <#if active == "aboutme">
         <li class="active">

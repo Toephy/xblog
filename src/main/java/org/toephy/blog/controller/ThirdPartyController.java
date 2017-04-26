@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.toephy.blog.bean.dto.SessionInfo;
 import org.toephy.blog.bean.entity.User;
 import org.toephy.blog.service.IUserService;
@@ -87,6 +88,22 @@ public class ThirdPartyController {
         }
         map.addAttribute("success", success);
         return "blink";
+    }
+
+    /**
+     * 退出登录
+     *
+     * @param request
+     * @return
+     */
+    @RequestMapping(value = "/exit")
+    @ResponseBody
+    public boolean exit(HttpServletRequest request, HttpServletResponse response) {
+        request.getSession().removeAttribute("session_uid");
+        request.getSession().removeAttribute("userAvatar");
+        request.getSession().removeAttribute("nickname");
+        CookieUtil.clearCookie(request, response);
+        return true;
     }
 
 }
