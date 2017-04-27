@@ -44,9 +44,9 @@
                 <div class="note-wrap">
                     暂无留言，来一发
                 </div>
-                <br>
             </#if>
 
+            <br>
             <#import "pager.ftl" as p>
             <@p.pager pageNoS=pager.pageNo totalPageS=pager.totalPage toURL="${pager.toURL}"/>
 
