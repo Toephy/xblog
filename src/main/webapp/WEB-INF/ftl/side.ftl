@@ -25,7 +25,7 @@
         <#else>
         <li>
         </#if>
-            <a href="messageBoard">留言板</a>
+            <a href="messageBoard/1">留言板</a>
         </li>
 
         <#if active == "aboutme">

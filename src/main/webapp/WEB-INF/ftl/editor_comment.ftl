@@ -2,7 +2,7 @@
     <div style=" min-height: 40px;">
         <span class="ico_reply"></span>
         <span style="font-weight: 700;color: #000;">发表评论</span>
-        <input id="comment_uid" value="${session_uid?default('-1')}" style="display: none">
+        <input id="uid" value="${session_uid?default('-1')}" style="display: none">
         <#if userAvatar?exists>
             <div style="float: right;">
                 <a href="javascript:void(0);" onclick="user.exit()">
@@ -31,7 +31,7 @@
 
     $("#submit_comment").click(function () {
 
-        var uid = $("#comment_uid").val();
+        var uid = $("#uid").val();
         if (uid < 0) {
             alert("请先登录");
             return;

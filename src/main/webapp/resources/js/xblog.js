@@ -5,7 +5,7 @@ $(function () {
     //$(".animate_left").animate({right:'10px'},"fast").animate({right:'0px'},"fast");
 
     $(".wangEditor-container").bind("click", function () {
-        var uid = $("#comment_uid").val();
+        var uid = $("#uid").val();
         if (uid < 0) {
             alert("请先登录");
             return;

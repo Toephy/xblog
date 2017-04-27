@@ -5,6 +5,33 @@ body {
     font-family: "microsoft yahei", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
+.note-wrap {
+    padding-top: 10px;
+    border-bottom: 1px solid #eee;
+    overflow:hidden;
+    /*background:#0000FF;*/
+}
+
+.note-inline-left {
+    text-align: center;
+    width:10%;
+    min-height:100px;
+    /*background:#FF0000;*/
+    float: left;
+}
+
+.note-inline-right {
+    padding: 0 5px;
+    width:90%;
+    min-height:100px;
+    /*background:#00FF00;*/
+    float: right;
+}
+
+.note-header {
+    margin-bottom: 2px;
+}
+
 .xfade {
     position:relative;
 }
@@ -113,7 +140,7 @@ body {
 }
 
 .comment_list {
-    margin: 10px 0px 15px 0;
+    margin: 10px 0 15px 0;
 }
 
 .comment_item {
@@ -130,11 +157,10 @@ body {
     margin-bottom: 2px;
 }
 
-.comment_header span {
-
-}
-
 .comment_avatar {
+    width:60px;
+    height:60px;
+    overflow: hidden;
     float: left;
 }
 

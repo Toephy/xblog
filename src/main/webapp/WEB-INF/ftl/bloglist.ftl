@@ -37,7 +37,7 @@
             </#list>
 
             <#import "pager.ftl" as p>
-            <@p.pager pageNo=pager.pageNo totalPage=pager.totalPage toURL="${pager.toURL}"/>
+            <@p.pager pageNoS=pager.pageNo totalPageS=pager.totalPage toURL="${pager.toURL}"/>
         </div>
     </div>
 <#include "foot.ftl">

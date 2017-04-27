@@ -29,6 +29,7 @@
         <mapper resource="org/toephy/blog/mapper/BlogMapper.xml"/>
         <mapper resource="org/toephy/blog/mapper/CommentMapper.xml"/>
         <mapper resource="org/toephy/blog/mapper/UserMapper.xml"/>
+        <mapper resource="org/toephy/blog/mapper/GuestNoteMapper.xml"/>
     </mappers>
     
 </configuration>

@@ -10,8 +10,16 @@
   </#if>
  -->
 
-<#macro pager pageNo totalPage toURL>
-<#-- 页号越界处理 -->
+<#macro pager pageNoS totalPageS toURL>
+    <#--解决全局变量覆盖的问题-->
+    <#assign pageNo=pageNoS>
+    <#assign totalPage=totalPageS>
+    <#--~~-->
+
+    <#if (totalPage < 1)>
+        <#assign totalPage=1>
+    </#if>
+    <#-- 页号越界处理 -->
     <#if (pageNo > totalPage)>
         <#assign pageNo=totalPage>
     </#if>

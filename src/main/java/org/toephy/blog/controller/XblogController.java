@@ -13,9 +13,11 @@ import org.toephy.blog.bean.dto.CommentDto;
 import org.toephy.blog.bean.dto.Pager;
 import org.toephy.blog.bean.entity.Blog;
 import org.toephy.blog.bean.entity.Comment;
+import org.toephy.blog.bean.entity.GuestNote;
 import org.toephy.blog.constants.AppConstant;
 import org.toephy.blog.service.IBlogService;
 import org.toephy.blog.service.ICommentService;
+import org.toephy.blog.service.IGuestNoteService;
 import org.toephy.blog.util.BlogStringUtil;
 
 import javax.servlet.http.HttpServletRequest;
@@ -33,6 +35,8 @@ public class XblogController {
     private IBlogService blogService;
     @Autowired
     private ICommentService commentService;
+    @Autowired
+    private IGuestNoteService guestNoteService;
 
     @RequestMapping("/")
     public String baseforward(HttpServletRequest request) {
@@ -95,9 +99,19 @@ public class XblogController {
      * @param request
      * @return
      */
-    @RequestMapping("/messageBoard")
-    public String messageBoard(HttpServletRequest request) {
+    @RequestMapping("/messageBoard/{pageNo}")
+    public String messageBoard(HttpServletRequest request, @PathVariable("pageNo") int pageNo, Model map) {
+        if (pageNo <= 0) {
+            pageNo = 1;
+        }
+        int pageSize = 10;
         request.setAttribute("active", "messageBoard");
+
+        Map<String, Object> data = guestNoteService.noteList(pageNo, pageSize);
+        Pager pager = new Pager(pageNo, Integer.parseInt(data.get("totalPage").toString()), "messageBoard/");
+        map.addAttribute("pager", pager);
+        map.addAttribute("noteList", data.get("notes"));
+
         return "messageBoard";
     }
 
@@ -140,7 +154,10 @@ public class XblogController {
         String content = ServletRequestUtils.getStringParameter(request, "content", "");
         int uidInSession = -1;
         try {
-            uidInSession = Integer.parseInt(request.getSession().getAttribute("session_uid").toString());
+            Object object = request.getSession().getAttribute("session_uid");
+            if (object != null) {
+                uidInSession = Integer.parseInt(object.toString());
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -170,7 +187,16 @@ public class XblogController {
         int uid = ServletRequestUtils.getIntParameter(request, "uid", 0);
         int blogId = ServletRequestUtils.getIntParameter(request, "blogId", -1);
         String content = ServletRequestUtils.getStringParameter(request, "comment", "");
-        if (uid <= 0 || blogId < 0 || StringUtils.isBlank(content)) {
+        int uidInSession = -1;
+        try {
+            Object object = request.getSession().getAttribute("session_uid");
+            if (object != null) {
+                uidInSession = Integer.parseInt(object.toString());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        if (uid != uidInSession || uidInSession < 0 || blogId < 0 || StringUtils.isBlank(content)) {
             return false;
         }
         content = content.replaceAll("<p><br></p>", "");
@@ -182,4 +208,37 @@ public class XblogController {
         return commentService.addComment(comment);
     }
 
+
+    /**
+     * 发表留言
+     *
+     * @param request
+     * @return
+     */
+    @RequestMapping(value = "/addnote", method = RequestMethod.POST)
+    @ResponseBody
+    public boolean addnote(HttpServletRequest request) {
+        int uid = ServletRequestUtils.getIntParameter(request, "uid", 0);
+        String content = ServletRequestUtils.getStringParameter(request, "content", "");
+        int uidInSession = -1;
+        try {
+            Object object = request.getSession().getAttribute("session_uid");
+            if (object != null) {
+                uidInSession = Integer.parseInt(object.toString());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        if (uid != uidInSession || uidInSession < 0 || StringUtils.isBlank(content)) {
+            return false;
+        }
+
+        content = content.replaceAll("<p><br></p>", "");
+        GuestNote note = new GuestNote();
+        note.setUid(uid);
+        note.setContent(content);
+        note.setCreateTime(new Date());
+        return guestNoteService.addNote(note);
+    }
 }
