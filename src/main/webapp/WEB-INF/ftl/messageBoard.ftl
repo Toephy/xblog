@@ -50,45 +50,6 @@
             <#import "pager.ftl" as p>
             <@p.pager pageNoS=pager.pageNo totalPageS=pager.totalPage toURL="${pager.toURL}"/>
 
-
-
-                <#--<div class="note-wrap">-->
-                    <#--<div class="note-inline-left">-->
-                        <#--<img src="http://tva4.sinaimg.cn/crop.0.0.180.180.180/95b58b7fjw1e8qgp5bmzyj2050050aa8.jpg" width="40" height="40">-->
-                        <#--<div><span style="color: #999;">第999楼</span></div>-->
-                    <#--</div>-->
-                    <#--<div class="note-inline-right">-->
-                        <#--<div class="note-header">-->
-                            <#--<span style="color: #369;">DYLM</span> <span style="color: #999;">2011-10-06 21:07</span>-->
-                        <#--</div>-->
-                        <#--<div>-->
-                            <#--<p>-->
-                                <#--333-->
-                            <#--</p>-->
-                        <#--</div>-->
-
-                    <#--</div>-->
-                <#--</div>-->
-
-                <#--<div class="note-wrap">-->
-                    <#--<div class="note-inline-left">-->
-                        <#--<img src="http://tva4.sinaimg.cn/crop.0.0.180.180.180/95b58b7fjw1e8qgp5bmzyj2050050aa8.jpg" width="40" height="40">-->
-                        <#--<div><span style="color: #999;">第999楼</span></div>-->
-                    <#--</div>-->
-                    <#--<div class="note-inline-right">-->
-                        <#--<div class="note-header">-->
-                            <#--<span style="color: #369;">DYLM</span> <span style="color: #999;">2011-10-06 21:07</span>-->
-                        <#--</div>-->
-                        <#--<div>-->
-                            <#--<p>-->
-                                <#--333-->
-                            <#--</p>-->
-                        <#--</div>-->
-
-                    <#--</div>-->
-                <#--</div>-->
-
-
             <#if !session_uid?exists>
                 <#include "loginthirdparty.ftl">
             </#if>
