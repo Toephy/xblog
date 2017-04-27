@@ -1,4 +1,4 @@
-<div class="side xfade">
+<div class="side">
     <#assign active = Request.active/>
     <img alt="Bootstrap Image Preview" src="resources/image/avatar.png" class="img-circle avatar"/>
     <ul class="nav nav-pills nav-stacked">
@@ -7,7 +7,7 @@
         <#else>
         <li>
         </#if>
-            <a href="blog/list/1">我的博客</a>
+            <a href="blog/list/1">博客列表</a>
         </li>
 
         <#if (session_uid)?? && session_uid == 37>
@@ -20,6 +20,13 @@
             </li>
         </#if>
 
+        <#if active == "messageBoard">
+        <li class="active">
+        <#else>
+        <li>
+        </#if>
+            <a href="messageBoard">留言板</a>
+        </li>
 
         <#if active == "aboutme">
         <li class="active">
@@ -27,14 +34,6 @@
         <li>
         </#if>
             <a href="aboutme">关于博主</a>
-        </li>
-
-        <#if active == "messageBoard">
-        <li class="active">
-        <#else>
-        <li>
-        </#if>
-            <a href="messageBoard">留言板</a>
         </li>
     </ul>
 </div>

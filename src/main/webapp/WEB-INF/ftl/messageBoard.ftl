@@ -11,23 +11,28 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-3">
+        <div class="col-md-3 xfade">
         <#include "side.ftl">
         </div>
-        <div class="col-md-9 content xfade">
+        <div class="col-md-9 animate_right">
             <div class="curtain">
-                <h2>
-                    留言板
-                </h2>
+                <div style="margin-bottom: 5px;padding: 0 0 1px; overflow: hidden;border: 0 solid #F1D091;border-bottom-width: 1px;">
+                    <h4>
+                        --轻轻的你来了--
+                    </h4>
+                </div>
+
+
                 <p>
                     留言板，留言板，留言板，留言板
                 </p>
-                <p>
-                    <a class="btn btn-primary btn-large" href="#">Learn more</a>
-                </p>
-            </div>
 
-        <#include "editor_comment.ftl">
+            <#if !session_uid?exists>
+                <#include "loginthirdparty.ftl">
+            </#if>
+
+            <#include "editor_note.ftl">
+            </div>
         </div>
     </div>
 <#include "foot.ftl">

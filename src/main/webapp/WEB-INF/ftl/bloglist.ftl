@@ -11,7 +11,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-3 animate_left">
+        <div class="col-md-3 xfade">
             <#include "side.ftl">
         </div>
         <div class="col-md-9 animate_right">
