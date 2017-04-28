@@ -28,9 +28,9 @@
                 </div>
             </div>
 
-            <#--<#if (session_uid)?? && session_uid == 37>-->
+            <#if (session_uid)?? && session_uid == 37>
                 <#include "editor_aboutme.ftl">
-            <#--</#if>-->
+            </#if>
         </div>
     </div>
 <#include "foot.ftl">
