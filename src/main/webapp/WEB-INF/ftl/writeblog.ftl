@@ -11,10 +11,10 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-3">
+        <div class="col-md-3 xfade">
         <#include "side.ftl">
         </div>
-        <div class="col-md-9 content">
+        <div class="col-md-9 animate_right">
             <#include "editor_blog.ftl">
         </div>
     </div>
