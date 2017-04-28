@@ -158,17 +158,17 @@ body {
 }
 
 .comment_avatar {
-    width:60px;
-    height:60px;
-    overflow: hidden;
+    width:7%;
+    min-height:50px;
     float: left;
 }
 
 .comment_content {
-    margin-left: 50px;
+    width:93%;
     line-height: 20px;
     padding: 5px;
     min-height: 50px;
+    float: right;
 }
 
 .pub_foot {

@@ -36,19 +36,19 @@
                                 <span style="color: #369;">${item.user.nickname}</span>
                                 <span>${item.createTime?string("yyyy-MM-dd HH:mm:ss")}发表</span>
                             </div>
-                            <div class="comment_avatar">
-                                <img src="${item.user.avatarurl}" width="40" height="40">
-                            </div>
-                            <div class="comment_content">
-                                ${item.commentContent}
+                            <div style="overflow:hidden;">
+                                <div class="comment_avatar">
+                                    <img src="${item.user.avatarurl}" width="40" height="40">
+                                </div>
+                                <div class="comment_content">
+                                    ${item.commentContent}
+                                </div>
                             </div>
                         </div>
                     </#list>
                 <#else>
                     <div class="comment_item">
-                    <div class="comment_content">
-                    暂无评论，来一发吧！
-                    </div>
+                        暂无评论，来一发吧！
                     </div>
                 </#if>
                 </div>
