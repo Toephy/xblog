@@ -25,7 +25,39 @@
     var editor = new wangEditor('comment');
     // 普通的自定义菜单
     editor.config.menus = [
-        'emotion'
+        'source',
+        'insertcode',
+        'img',
+        '|',
+        'bold',
+        'underline',
+        'italic',
+        'strikethrough',
+        'eraser',
+        'forecolor',
+        'bgcolor',
+        '|',
+        'quote',
+        'fontfamily',
+        'fontsize',
+        'head',
+        'unorderlist',
+        'orderlist',
+        'alignleft',
+        'aligncenter',
+        'alignright',
+        '|',
+        'link',
+        'unlink',
+        'table',
+        'emotion',
+//        '|',
+//        'video',
+//        'location',
+        '|',
+        'undo',
+        'redo',
+        'fullscreen'
     ];
     editor.create();
 
