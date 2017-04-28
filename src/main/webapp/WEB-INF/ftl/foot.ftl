@@ -1,6 +1,6 @@
 <div class="footer-wrap">
     <div class="container" style="text-align: center">
         <#--<img alt="Bootstrap Image Preview" src="resources/image/weibo.jpg" class="img-rounded"/>-->
-        <span>我的微博二维码，欢迎扫码互粉</span>
+        <span style="color: #999;">新浪微博“小兴射象头”，欢迎加好友互粉</span>
     </div>
 </div>

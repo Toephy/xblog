@@ -18,7 +18,7 @@
             <div class="curtain">
                 <div style="margin-bottom: 5px;padding: 0 0 1px; overflow: hidden;border: 0 solid #F1D091;border-bottom-width: 1px;">
                     <h4>
-                        --轻轻的你来了--
+                        ❀ 终于等到你 ❀
                     </h4>
                 </div>
 

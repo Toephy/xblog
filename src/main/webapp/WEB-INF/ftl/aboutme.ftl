@@ -16,16 +16,21 @@
         </div>
         <div class="col-md-9 animate_right">
             <div class="curtain">
-                <h2>
-                    关于我
-                </h2>
-                <p>
-                    窗前明月光，<br>
-                    疑是地上霜。<br>
-                    举头望明月，<br>
-                    低头思故乡。<br>
-                </p>
+                <div style="margin-bottom: 5px;padding: 0 0 1px; overflow: hidden;border: 0 solid #F1D091;border-bottom-width: 1px;">
+                    <h4>
+                        ☞ 关于我
+                    </h4>
+                </div>
+                <div class="article_content">
+                    <div class="markdown_views">
+                        ${content}
+                    </div>
+                </div>
             </div>
+
+            <#--<#if (session_uid)?? && session_uid == 37>-->
+                <#include "editor_aboutme.ftl">
+            <#--</#if>-->
         </div>
     </div>
 <#include "foot.ftl">

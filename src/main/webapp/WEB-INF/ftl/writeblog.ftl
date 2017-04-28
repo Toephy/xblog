@@ -15,7 +15,9 @@
         <#include "side.ftl">
         </div>
         <div class="col-md-9 animate_right">
-            <#include "editor_blog.ftl">
+            <div class="curtain">
+                <#include "editor_blog.ftl">
+            </div>
         </div>
     </div>
 </div>

@@ -19,6 +19,7 @@ import org.toephy.blog.service.IBlogService;
 import org.toephy.blog.service.ICommentService;
 import org.toephy.blog.service.IGuestNoteService;
 import org.toephy.blog.util.BlogStringUtil;
+import org.toephy.blog.util.FileUtil;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
@@ -37,6 +38,9 @@ public class XblogController {
     private ICommentService commentService;
     @Autowired
     private IGuestNoteService guestNoteService;
+
+    private static final String ABOUTME_FILE = "/app/soft/tomcat-7.0.57/webapps/aboutme.txt";
+
 
     @RequestMapping("/")
     public String baseforward(HttpServletRequest request) {
@@ -82,14 +86,46 @@ public class XblogController {
     }
 
     /**
+     * 编辑关于博主
+     *
+     * @param request
+     * @return
+     */
+    @RequestMapping("/editaboutme")
+    @ResponseBody
+    public boolean editaboutme(HttpServletRequest request) {
+        int uid = ServletRequestUtils.getIntParameter(request, "uid", 0);
+        String content = ServletRequestUtils.getStringParameter(request, "content", "");
+
+        int uidInSession = -1;
+        try {
+            Object object = request.getSession().getAttribute("session_uid");
+            if (object != null) {
+                uidInSession = Integer.parseInt(object.toString());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        if (uid != uidInSession || uidInSession != AppConstant.HOST_UID || StringUtils.isBlank(content)) {
+            return false;
+        } else {
+            FileUtil.writeFile(ABOUTME_FILE, content, false, "UTF-8");
+        }
+        return true;
+    }
+
+    /**
      * 关于博主
      *
      * @param request
      * @return
      */
     @RequestMapping("/aboutme")
-    public String aboutme(HttpServletRequest request) {
+    public String aboutme(HttpServletRequest request, Model map) {
         request.setAttribute("active", "aboutme");
+        String s = FileUtil.readFile(ABOUTME_FILE, false, "UTF-8");
+        map.addAttribute("content", s);
         return "aboutme";
     }
 
