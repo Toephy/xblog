@@ -60,10 +60,11 @@ public class ThirdPartyController {
                     localUser.setAvatarurl(weiboUser.getAvatarLarge());
                     localUser.setRegesterType(3);
                     localUser.setCreateTime(new Date());
-                    int id = userService.addUser(localUser);
-                    if (id > 0) {
-                        localUser.setId(id);
-                    }
+                    userService.addUser(localUser);
+                    //int id = userService.addUser(localUser);
+                    //if (id > 0) {
+                    //    localUser.setId(id);
+                    //}
                 }
 
                 if (localUser.getId() > 0) {

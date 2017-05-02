@@ -72,9 +72,19 @@
 
         var uid = $("#edit_blog_uid").val();
 
+        if (uid < 0) {
+            alert("请先登录");
+            return;
+        }
+
         var blogTitle = $("#blog_title").val();
         // 获取编辑器区域完整html代码
         var blogContent = editor.$txt.html();
+
+        if (blogTitle.length <= 0 || blogContent.length <= 0) {
+            alert("请输入标题或内容");
+            return;
+        }
 
         // 获取编辑器纯文本内容
 //        var data2 = editor.$txt.text();

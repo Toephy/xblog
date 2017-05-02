@@ -197,7 +197,8 @@ public class XblogController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        if (uid != uidInSession || uidInSession != AppConstant.HOST_UID) {
+        if (uid != uidInSession || uidInSession != AppConstant.HOST_UID
+                || StringUtils.isEmpty(title) || StringUtils.isEmpty(content)) {
             return false;
         }
 
