@@ -1,8 +1,12 @@
 body {
     background: url(../image/body_bg.jpg) repeat center top;
-    background-size: cover;
+    /*background-size: cover;*/
     /*background-color: #f5f5f5;*/
     font-family: "microsoft yahei", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+img {
+    max-width: 100%;
 }
 
 .note-wrap {
