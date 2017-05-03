@@ -65,7 +65,7 @@
     };
 
     // 隐藏掉插入网络图片功能。该配置，只有在你正确配置了图片上传功能之后才可用。
-//    editor.config.hideLinkImg = true;
+    // editor.config.hideLinkImg = true;
     editor.create();
 
     $("#submit_blog").click(function () {
@@ -86,10 +86,6 @@
             return;
         }
 
-        // 获取编辑器纯文本内容
-//        var data2 = editor.$txt.text();
-        // 获取格式化后的纯文本
-//        var data3 = editor.$txt.formatText();
         $.ajax({
             url: "addblog",
             async: false,

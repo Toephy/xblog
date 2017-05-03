@@ -7,8 +7,8 @@
     <resultMap id="blogMap" type="org.toephy.blog.bean.entity.Blog">
         <id property="id" column="id" />
         <result property="blogTitle" column="blog_title" />
-        <result property="blogDesc" column="blog_desc" />
-        <result property="blogContent" column="blog_content" />
+        <!--<result property="blogDesc" column="blog_desc" />-->
+        <!--<result property="blogContent" column="blog_content" />-->
         <result property="viewCount" column="view_count" />
         <result property="createTime" column="create_time" />
     </resultMap>
@@ -30,20 +30,16 @@
         SELECT * FROM blog ORDER BY id DESC;
     </select>
 
-    <insert id="insert" parameterType="org.toephy.blog.bean.entity.Blog">
+    <insert id="insert" parameterType="org.toephy.blog.bean.entity.Blog" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO blog
         (
         blog_title,
-        blog_desc,
-        blog_content,
         view_count,
         create_time
         )
         VALUES
         (
         #{blogTitle, jdbcType=VARCHAR},
-        #{blogDesc, jdbcType=VARCHAR},
-        #{blogContent, jdbcType=VARCHAR},
         #{viewCount, jdbcType=INTEGER},
         #{createTime}
         );

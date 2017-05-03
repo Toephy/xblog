@@ -7,7 +7,7 @@ import org.mongodb.morphia.annotations.Id;
 /**
  * Created by Toephy on 2017.5.2 15:34
  */
-@Entity(value="cacheInfos", noClassnameStored=true)
+@Entity(value="blog", noClassnameStored=true)
 public class BlogMongo extends BaseMongo {
 
     @Id

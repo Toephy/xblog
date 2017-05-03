@@ -48,6 +48,67 @@ public class XblogController {
     }
 
     /**
+     * 写博客页面
+     *
+     * @param request
+     * @return
+     */
+    @RequestMapping("/writeblog")
+    public String writeblog(HttpServletRequest request) {
+        int uidInSession = -1;
+        try {
+            Object object = request.getSession().getAttribute("session_uid");
+            if (object != null) {
+                uidInSession = Integer.parseInt(object.toString());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        if (uidInSession != AppConstant.HOST_UID) {
+            return "redirect:/blog/list/1";
+        }
+
+        request.setAttribute("active", "writeblog");
+        return "writeblog";
+    }
+
+    /**
+     * 发表博客
+     *
+     * @param request
+     * @return
+     */
+    @RequestMapping(value = "/addblog", method = RequestMethod.POST)
+    @ResponseBody
+    public boolean addblog(HttpServletRequest request) {
+        int uid = ServletRequestUtils.getIntParameter(request, "uid", 0);
+        String title = ServletRequestUtils.getStringParameter(request, "title", "");
+        String content = ServletRequestUtils.getStringParameter(request, "content", "");
+        int uidInSession = -1;
+        try {
+            Object object = request.getSession().getAttribute("session_uid");
+            if (object != null) {
+                uidInSession = Integer.parseInt(object.toString());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        if (uid != uidInSession || uidInSession != AppConstant.HOST_UID
+                || StringUtils.isEmpty(title) || StringUtils.isEmpty(content)) {
+            return false;
+        }
+
+        //content = BlogStringUtil.beautifyContent(content);
+        Blog blog = new Blog();
+        blog.setBlogTitle(title);
+        blog.setBlogDesc(BlogStringUtil.extractDesc(content));
+        blog.setBlogContent(content);
+        blog.setViewCount(96542);
+        blog.setCreateTime(new Date());
+        return blogService.addBlog(blog);
+    }
+
+    /**
      * 博客列表
      *
      * @param request
@@ -149,67 +210,6 @@ public class XblogController {
         map.addAttribute("noteList", data.get("notes"));
 
         return "messageBoard";
-    }
-
-    /**
-     * 编辑博客页面
-     *
-     * @param request
-     * @return
-     */
-    @RequestMapping("/writeblog")
-    public String writeblog(HttpServletRequest request) {
-        int uidInSession = -1;
-        try {
-            Object object = request.getSession().getAttribute("session_uid");
-            if (object != null) {
-                uidInSession = Integer.parseInt(object.toString());
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        if (uidInSession != AppConstant.HOST_UID) {
-            return "redirect:/blog/list/1";
-        }
-
-        request.setAttribute("active", "writeblog");
-        return "writeblog";
-    }
-
-    /**
-     * 发表博客
-     *
-     * @param request
-     * @return
-     */
-    @RequestMapping(value = "/addblog", method = RequestMethod.POST)
-    @ResponseBody
-    public boolean addblog(HttpServletRequest request) {
-        int uid = ServletRequestUtils.getIntParameter(request, "uid", 0);
-        String title = ServletRequestUtils.getStringParameter(request, "title", "");
-        String content = ServletRequestUtils.getStringParameter(request, "content", "");
-        int uidInSession = -1;
-        try {
-            Object object = request.getSession().getAttribute("session_uid");
-            if (object != null) {
-                uidInSession = Integer.parseInt(object.toString());
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        if (uid != uidInSession || uidInSession != AppConstant.HOST_UID
-                || StringUtils.isEmpty(title) || StringUtils.isEmpty(content)) {
-            return false;
-        }
-
-        //content = BlogStringUtil.beautifyContent(content);
-        Blog blog = new Blog();
-        blog.setBlogTitle(title);
-        blog.setBlogDesc(BlogStringUtil.extractDesc(content));
-        blog.setBlogContent(content);
-        blog.setViewCount(96542);
-        blog.setCreateTime(new Date());
-        return blogService.addBlog(blog);
     }
 
     /**
