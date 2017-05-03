@@ -28,6 +28,9 @@ public class BlogServiceImpl implements IBlogService {
     @Override
     public Blog getBlogById(int id) {
         Blog blog = blogDao.getBlogbyId(id);
+        if (blog == null) {
+            return null;
+        }
         BlogMongo blogMongo = blogMongoDao.getBlogbyId(blog.getId());
         if (blogMongo == null) {
             return null;
