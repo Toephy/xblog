@@ -13,6 +13,12 @@ $(function () {
     });
 });
 
+var xblog = {
+    pageScroll: function () {
+        $('html, body').animate({ scrollTop: 0 }, 'fast');//带动画
+    }
+};
+
 var user = {
     exit: function () {
         $.ajax({

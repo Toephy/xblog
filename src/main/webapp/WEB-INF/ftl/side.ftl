@@ -37,3 +37,5 @@
         </li>
     </ul>
 </div>
+
+<#include "side_fix.ftl">
