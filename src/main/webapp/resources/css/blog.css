@@ -195,3 +195,39 @@ img {
     color: #504d50;
     background-color: #fff;
 }
+
+.fixed-side-menu {
+    position: fixed;
+    right: 25px;
+    bottom: 50px;
+    width: 50px;
+}
+
+.fixed-side-menu .list-group .list-group-item a {
+    display: block;
+    position: relative;
+    /*top: 15px;*/
+    /*left: 14px;*/
+    width: 22px;
+    height: 20px;
+}
+
+.fixed-side-menu .list-group .list-group-item a.ico-bg {
+    background: url(../image/side_fix.png) no-repeat;
+}
+
+.fixed-side-menu .list-group .list-group-item a.qq {
+    background-position: 0 0;
+}
+
+.fixed-side-menu .list-group .list-group-item a.weixin {
+    background-position: -1px -22px;
+}
+
+.fixed-side-menu .list-group .list-group-item a.weibo {
+    background-position: -2px -45px;
+}
+
+.fixed-side-menu .list-group .list-group-item a.gotop {
+    background-position: -4px -64px;
+}
