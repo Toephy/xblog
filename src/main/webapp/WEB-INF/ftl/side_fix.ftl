@@ -1,5 +1,5 @@
 <div class="fixed-side-menu">
-    <div class="list-group">
+    <div id="fixed-list-group" class="list-group">
     <#if !session_uid?exists>
         <div class="list-group-item">
             <a href="#" class="ico-bg qq"></a>
@@ -14,8 +14,5 @@
                title="微博账号登录"></a>
         </div>
     </#if>
-        <div class="list-group-item">
-            <a href="javascript:void(0)" class="ico-bg gotop" onclick="xblog.pageScroll()"></a>
-        </div>
     </div>
 </div>
