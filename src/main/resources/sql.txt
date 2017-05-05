@@ -1,10 +1,29 @@
 CREATE TABLE `blog` (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '博客id',
   `blog_title` varchar(100) CHARACTER SET utf8 DEFAULT '' COMMENT '博客标题',
-  `blog_desc` varchar(500) CHARACTER SET utf8 DEFAULT '' COMMENT '博文简介',
-  `blog_content` varchar(5000) CHARACTER SET utf8mb4 DEFAULT '' COMMENT '博客内容',
   `view_count` int(11) DEFAULT '0' COMMENT '浏览次数',
   `create_time` datetime DEFAULT CURRENT_TIMESTAMP COMMENT '博客创建时间',
   PRIMARY KEY (`id`),
   KEY `index_blog_title` (`blog_title`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci
+) ENGINE=MyISAM AUTO_INCREMENT=86 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci
+
+CREATE TABLE `comment` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '评论id',
+  `blog_id` int(11) NOT NULL COMMENT '博客id',
+  `uid` int(11) NOT NULL COMMENT '本地用户id',
+  `comment_content` varchar(5000) CHARACTER SET utf8 NOT NULL COMMENT '评论内容',
+  `create_time` datetime DEFAULT CURRENT_TIMESTAMP COMMENT '评论时间',
+  PRIMARY KEY (`id`),
+  KEY `index_id_blogId` (`id`,`blog_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=40 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci
+
+CREATE TABLE `user` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '本地用户id',
+  `openid` varchar(128) CHARACTER SET utf8 DEFAULT '' COMMENT '用户第三方唯一标识',
+  `nickname` varchar(100) CHARACTER SET utf8 DEFAULT '' COMMENT '昵称',
+  `avatarurl` varchar(250) CHARACTER SET utf8mb4 DEFAULT '' COMMENT '头像地址',
+  `regesterType` int(11) DEFAULT '0' COMMENT '第三方用户来源',
+  `create_time` datetime DEFAULT CURRENT_TIMESTAMP COMMENT '记录创建时间',
+  PRIMARY KEY (`id`),
+  KEY `index_id_openid` (`id`,`openid`)
+) ENGINE=MyISAM AUTO_INCREMENT=42 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci
